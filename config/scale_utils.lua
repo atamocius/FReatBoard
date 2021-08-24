@@ -119,4 +119,18 @@ function scale_utils.getNote(value, useFlats, scale)
     }
 end
 
+local function scalesListToDictionary(list)
+    local t = {}
+    for i = 1, #list do
+        t[list[i].name] = list[i].rootRelativeIndices
+    end
+    return t
+end
+
+function scale_utils.transformScalesList(list)
+    local s = scalesListToDictionary(list)
+    s.keys = utils.map(list, function(item) return item.name end)
+    return s
+end
+
 return scale_utils

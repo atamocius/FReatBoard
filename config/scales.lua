@@ -22,15 +22,4 @@ local list = {
     },
 }
 
-function toDictionary()
-    local t = {}
-    for i = 1, #list do
-        t[list[i].name] = list[i].rootRelativeIndices
-    end
-    return t
-end
-
-local scales = toDictionary()
-scales.keys = utils.map(list, function(item) return item.name end)
-
-return scales
+return scaleUtils.transformScalesList(list)

@@ -1,5 +1,6 @@
 local scales = require('config/scales')
-local utils = require('config/scale_utils')
+local scaleUtils = require('config/scale_utils')
+local utils = require('utils/utils')
 
 local scale_selector = {}
 
@@ -7,8 +8,8 @@ function scale_selector.render(x, y, z, useFlats)
     local accidental = 1
     if useFlats then accidental = 2 end
 
-    local noteNames = utils.NOTES[accidental]
-    local scaleNames = {table.unpack(scales.keys)}
+    local noteNames = scaleUtils.NOTES[accidental]
+    local scaleNames = utils.clone(scales.keys)
 
     table.insert(scaleNames, 1, '---')
 

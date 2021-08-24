@@ -30,4 +30,8 @@ function utils.map(tbl, f)
     return t
 end
 
+function utils.clone(tbl)
+    return {table.unpack(tbl)}
+end
+
 return utils
