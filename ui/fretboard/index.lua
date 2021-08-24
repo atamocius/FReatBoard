@@ -1,5 +1,6 @@
 local config = require('config/fretboard')
 local scales = require('config/scales')
+local utils = require('config/scale_utils')
 
 local index = {}
 
@@ -16,17 +17,27 @@ local NOTE_SPACING_Y = 6
 local LABEL_START_X = 16
 local LABEL_START_Y = 80
 
+local DEFAULT_NOTE_COLOR = 'elm_frame'
+local SCALE_NOTE_COLOR = 'blue'
+local ROOT_NOTE_COLOR = 'green'
+
 -- fret: 0 to 24
 -- string: 1 to X
-local function drawNote(fret, string, useFlats, scale, rootIndex)
+local function drawNote(fret, string, useFlats, scale)
     local name = 'btnFret' .. fret .. 'String' .. string
 
     local value = config.tuning[string] + fret
-    local note = config.getNote(value, useFlats, scale, rootIndex)
+    local note = utils.getNote(value, useFlats, scale)
 
     local index = note.index
     local caption = note.name
-    local color = note.color
+    local color = DEFAULT_NOTE_COLOR
+
+    if note.isRoot then
+        color = ROOT_NOTE_COLOR
+    elseif note.isInScale then
+        color = SCALE_NOTE_COLOR
+    end
 
     GUI.New(name, 'Button', {
         z = Z_INDEX,
@@ -99,12 +110,12 @@ local function drawFretLabel(fret)
     end
 end
 
-local function drawFretboard(useFlats, scale, rootIndex)
+local function drawFretboard(useFlats, scale)
     for fret = 0, config.frets do
         drawFretLabel(fret)
 
         for string = 1, #config.tuning do
-            drawNote(fret, string, useFlats, scale, rootIndex)
+            drawNote(fret, string, useFlats, scale)
         end
     end
 
@@ -128,7 +139,7 @@ function index.render()
     -- reaper.ShowConsoleMsg(highlights[2].intervals[6] .. '\n')
     -- reaper.ShowConsoleMsg(highlights[2].intervals[7] .. '\n')
 
-    drawFretboard(false, scales[2], 5)
+    drawFretboard(false, scales[2].rootRelativeIndices[5])
 end
 
 return index
