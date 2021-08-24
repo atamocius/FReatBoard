@@ -138,7 +138,11 @@ function index.render()
     -- reaper.ShowConsoleMsg(highlights[2].intervals[6] .. '\n')
     -- reaper.ShowConsoleMsg(highlights[2].intervals[7] .. '\n')
 
-    drawFretboard(false, scales[2].rootRelativeIndices[5])
+    -- local x = scales['Phrygian']
+    -- reaper.ShowConsoleMsg(scales.keys[1])
+    -- reaper.ShowConsoleMsg(#x)
+
+    drawFretboard(false, scales['Phrygian'][5])
 end
 
 return index

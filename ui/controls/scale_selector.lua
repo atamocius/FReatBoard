@@ -1,6 +1,17 @@
+local scales = require('config/scales')
+local utils = require('config/scale_utils')
+
 local scale_selector = {}
 
 function scale_selector.render(x, y, z, useFlats)
+    local accidental = 1
+    if useFlats then accidental = 2 end
+
+    local noteNames = utils.NOTES[accidental]
+    local scaleNames = {table.unpack(scales.keys)}
+
+    table.insert(scaleNames, 1, '---')
+
     GUI.New('mnuTonic', 'Menubox', {
         z = z,
         x = x,
@@ -8,7 +19,7 @@ function scale_selector.render(x, y, z, useFlats)
         w = 48,
         h = 20,
         caption = 'Scale',
-        optarray = {'A', 'A#', 'B', 'C', 'C#'},
+        optarray = noteNames,
         retval = 1.0,
         font_a = 3,
         font_b = 4,
@@ -27,7 +38,7 @@ function scale_selector.render(x, y, z, useFlats)
         w = 100,
         h = 20,
         caption = '',
-        optarray = {'---', 'Ionian (Major)', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Aeolian (Minor)', 'Locrian'},
+        optarray = scaleNames,
         retval = 1.0,
         font_a = 3,
         font_b = 4,

@@ -1,47 +1,43 @@
+local utils = require('utils/utils')
+
 local scale_utils = {
     MAJOR_INTERVALS = { 0, 2, 4, 5, 7, 9, 11, },
     NOTES = {
-        { 'C' , 'C'  },
-        { 'C#', 'Db' },
-        { 'D' , 'D'  },
-        { 'D#', 'Eb' },
-        { 'E' , 'E'  },
-        { 'F' , 'F'  },
-        { 'F#', 'Gb' },
-        { 'G' , 'G'  },
-        { 'G#', 'Ab' },
-        { 'A' , 'A'  },
-        { 'A#', 'Bb' },
-        { 'B' , 'B'  },
+        {
+            'C' ,
+            'C#',
+            'D' ,
+            'D#',
+            'E' ,
+            'F' ,
+            'F#',
+            'G' ,
+            'G#',
+            'A' ,
+            'A#',
+            'B' ,
+        },
+        {
+            'C' ,
+            'Db',
+            'D' ,
+            'Eb',
+            'E' ,
+            'F' ,
+            'Gb',
+            'G' ,
+            'Ab',
+            'A' ,
+            'Bb',
+            'B' ,
+        },
     },
 }
-
-local function trim(s)
-    return string.gsub(s, '^%s*(.-)%s*$', '%1')
-end
-
-local function split(s, delimiter)
-    local result = {};
-
-    for match in (s..delimiter):gmatch('(.-)'..delimiter) do
-        match = trim(match)
-        table.insert(result, match);
-    end
-
-    return result;
-end
-
-local function contains(list, x)
-    for _, v in pairs(list) do
-        if v == x then return true end
-    end
-    return false
-end
 
 local function toNoteIndices(intervals)
     local results = {}
 
-    local ints = split(intervals, ',')
+    local ints = utils.split(intervals, ',')
 
     for i = 1, #ints do
         local n = ints[i]:sub(1, 1)
@@ -92,7 +88,7 @@ function scale_utils.createAllRootRelativeNoteIndices(intervals)
 end
 
 function scale_utils.isNoteInScale(scale, noteIndex)
-    return contains(scale, noteIndex)
+    return utils.contains(scale, noteIndex)
 end
 
 function scale_utils.isNoteTheRoot(scale, noteIndex)
@@ -108,13 +104,13 @@ function scale_utils.getNote(value, useFlats, scale)
     -- use x // 12 - 1 to get octave
     local octave = value // 12 - 1
 
-    local noteName = scale_utils.NOTES[noteIndex + 1]
-
     local accidental = 1
     if useFlats then accidental = 2 end
 
+    local noteName = scale_utils.NOTES[accidental][noteIndex + 1]
+
     return {
-        name = noteName[accidental],
+        name = noteName,
         octave = octave,
         value = value,
         index = noteIndex + 1,
