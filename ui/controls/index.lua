@@ -41,10 +41,11 @@ function index.render()
         opt_size = 20
     })
 
+
     GUI.New('btnClear', 'Button', {
         z = 11,
-        x = 144,
-        y = 16,
+        x = 224,
+        y = 60,
         w = 48,
         h = 24,
         caption = 'Clear',
@@ -53,62 +54,11 @@ function index.render()
         col_fill = 'red'
     })
 
-    GUI.New('sldVelocity', 'Slider', {
-        z = 11,
-        x = 240,
-        y = 32,
-        w = 128,
-        caption = 'Velocity',
-        min = 1,
-        max = 127,
-        defaults = {63},
-        inc = 1,
-        dir = 'h',
-        font_a = 3,
-        font_b = 4,
-        col_txt = 'txt',
-        col_fill = 'elm_fill',
-        bg = 'wnd_bg',
-        show_handles = true,
-        show_values = true,
-        cap_x = 0,
-        cap_y = 0
-    })
-
-    GUI.New('mnbNoteLength', 'Menubox', {
-        z = 11,
-        x = 416,
-        y = 16,
-        w = 64,
-        h = 20,
-        caption = 'Length',
-        optarray = {
-            '1/128',
-            '1/64',
-            '1/32',
-            '1/16',
-            '1/8',
-            '1/4',
-            '1/2',
-            '1',
-            '2',
-            '4',
-        },
-        retval = 4,
-        font_a = 3,
-        font_b = 4,
-        col_txt = 'txt',
-        col_cap = 'txt',
-        bg = 'wnd_bg',
-        pad = 4,
-        noarrow = false,
-        align = 0
-    })
 
     GUI.New('btnSubmit', 'Button', {
         z = 11,
-        x = 496,
-        y = 16,
+        x = 288,
+        y = 60,
         w = 256,
         h = 24,
         caption = 'Submit',
@@ -116,6 +66,93 @@ function index.render()
         col_txt = 'txt',
         col_fill = 'blue'
     })
+
+    GUI.New("mnuTonic", "Menubox", {
+        z = 11,
+        x = 42,
+        y = 62,
+        w = 48,
+        h = 20,
+        caption = "Scale",
+        optarray = {"A", 'A#', 'B', 'C', 'C#'},
+        retval = 1.0,
+        font_a = 3,
+        font_b = 4,
+        col_txt = "txt",
+        col_cap = "txt",
+        bg = "wnd_bg",
+        pad = 4,
+        noarrow = false,
+        align = 0
+    })
+
+    GUI.New("mnuScales", "Menubox", {
+        z = 11,
+        x = 96,
+        y = 62,
+        w = 100,
+        h = 20,
+        caption = "",
+        optarray = {"---", "Ionian (Major)", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian (Minor)", "Locrian"},
+        retval = 1.0,
+        font_a = 3,
+        font_b = 4,
+        col_txt = "txt",
+        col_cap = "txt",
+        bg = "wnd_bg",
+        pad = 4,
+        noarrow = false,
+        align = 0
+    })
+
+
+    GUI.New("lblVelocity", "Label", {
+        z = 11,
+        x = 224,
+        y = 0,
+        caption = "Velocity",
+        font = 2,
+        color = "txt",
+        bg = "wnd_bg",
+        shadow = false
+    })
+
+    GUI.New("btnVel10", "Button", {
+        z = 11,
+        x = 288,
+        y = 0,
+        w = 28,
+        h = 24,
+        caption = "127",
+        font = 3,
+        col_txt = "txt",
+        col_fill = "elm_frame"
+    })
+
+
+    GUI.New("lblLength", "Label", {
+        z = 11,
+        x = 224,
+        y = 30,
+        caption = "Length",
+        font = 2,
+        color = "txt",
+        bg = "wnd_bg",
+        shadow = false
+    })
+
+    GUI.New("lblLength1", "Button", {
+        z = 11,
+        x = 288,
+        y = 30,
+        w = 48,
+        h = 24,
+        caption = "1/128",
+        font = 3,
+        col_txt = "txt",
+        col_fill = "elm_frame"
+    })
+
 end
 
 return index

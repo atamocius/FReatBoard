@@ -7,14 +7,14 @@ local index = {}
 local Z_INDEX = 11
 
 local NOTE_START_X = 16
-local NOTE_START_Y = 104
+local NOTE_START_Y = 128
 local NOTE_W = 24
 local NOTE_H = 24
 local NOTE_SPACING_X = 8
 local NOTE_SPACING_Y = 6
 
 local LABEL_START_X = 16
-local LABEL_START_Y = 80
+local LABEL_START_Y = 104
 
 local DEFAULT_NOTE_COLOR = 'elm_frame'
 local SCALE_NOTE_COLOR = 'blue'
@@ -63,7 +63,7 @@ local function drawFretLabel(fret)
     GUI.New(name, 'Label', {
         z = Z_INDEX,
         x = LABEL_START_X + fret * (NOTE_W + NOTE_SPACING_X),
-        y = 80,
+        y = LABEL_START_Y,
         caption = pad .. fret,
         font = 2,
         color = 'txt',
@@ -84,7 +84,7 @@ local function drawFretLabel(fret)
         GUI.New(symName, 'Label', {
             z = Z_INDEX + 1,
             x = LABEL_START_X + fret * (NOTE_W + NOTE_SPACING_X) + (NOTE_W / 2 - 2),
-            y = 60,
+            y = LABEL_START_Y - 20,
             caption = '.',
             font = 2,
             color = 'txt',
@@ -99,7 +99,7 @@ local function drawFretLabel(fret)
         GUI.New(symName, 'Label', {
             z = Z_INDEX + 1,
             x = LABEL_START_X + fret * (NOTE_W + NOTE_SPACING_X) + (NOTE_W / 2 - 6),
-            y = 60,
+            y = LABEL_START_Y - 20,
             caption = '. .',
             font = 2,
             color = 'txt',
