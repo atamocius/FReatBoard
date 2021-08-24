@@ -5,7 +5,6 @@ local utils = require('config/scale_utils')
 local index = {}
 
 local Z_INDEX = 11
-local DEFAULT_NOTE_COLOR = 'elm_frame'
 
 local NOTE_START_X = 16
 local NOTE_START_Y = 104
