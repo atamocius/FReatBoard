@@ -1,21 +1,20 @@
-local MAJOR_INTERVALS = { 0, 2, 4, 5, 7, 9, 11, }
-
-local NOTES = {
-    { 'C' , 'C'  },
-    { 'C#', 'Db' },
-    { 'D' , 'D'  },
-    { 'D#', 'Eb' },
-    { 'E' , 'E'  },
-    { 'F' , 'F'  },
-    { 'F#', 'Gb' },
-    { 'G' , 'G'  },
-    { 'G#', 'Ab' },
-    { 'A' , 'A'  },
-    { 'A#', 'Bb' },
-    { 'B' , 'B'  },
+local scale_utils = {
+    MAJOR_INTERVALS = { 0, 2, 4, 5, 7, 9, 11, },
+    NOTES = {
+        { 'C' , 'C'  },
+        { 'C#', 'Db' },
+        { 'D' , 'D'  },
+        { 'D#', 'Eb' },
+        { 'E' , 'E'  },
+        { 'F' , 'F'  },
+        { 'F#', 'Gb' },
+        { 'G' , 'G'  },
+        { 'G#', 'Ab' },
+        { 'A' , 'A'  },
+        { 'A#', 'Bb' },
+        { 'B' , 'B'  },
+    },
 }
-
-local scale_utils = {}
 
 local function trim(s)
     return string.gsub(s, '^%s*(.-)%s*$', '%1')
@@ -58,7 +57,7 @@ local function toNoteIndices(intervals)
 
         local index = tonumber(n)
 
-        table.insert(results, MAJOR_INTERVALS[index] + offset)
+        table.insert(results, scale_utils.MAJOR_INTERVALS[index] + offset)
     end
     return results
 end
@@ -109,7 +108,7 @@ function scale_utils.getNote(value, useFlats, scale)
     -- use x // 12 - 1 to get octave
     local octave = value // 12 - 1
 
-    local noteName = NOTES[noteIndex + 1]
+    local noteName = scale_utils.NOTES[noteIndex + 1]
 
     local accidental = 1
     if useFlats then accidental = 2 end

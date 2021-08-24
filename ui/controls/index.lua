@@ -1,3 +1,5 @@
+local scaleSelector = require('ui/controls/scale_selector')
+
 local index = {}
 
 function index.render()
@@ -67,90 +69,91 @@ function index.render()
         col_fill = 'blue'
     })
 
-    GUI.New("mnuTonic", "Menubox", {
-        z = 11,
-        x = 42,
-        y = 62,
-        w = 48,
-        h = 20,
-        caption = "Scale",
-        optarray = {"A", 'A#', 'B', 'C', 'C#'},
-        retval = 1.0,
-        font_a = 3,
-        font_b = 4,
-        col_txt = "txt",
-        col_cap = "txt",
-        bg = "wnd_bg",
-        pad = 4,
-        noarrow = false,
-        align = 0
-    })
+    scaleSelector.render(42, 62, 11, false)
+    -- GUI.New('mnuTonic', 'Menubox', {
+    --     z = 11,
+    --     x = 42,
+    --     y = 62,
+    --     w = 48,
+    --     h = 20,
+    --     caption = 'Scale',
+    --     optarray = {'A', 'A#', 'B', 'C', 'C#'},
+    --     retval = 1.0,
+    --     font_a = 3,
+    --     font_b = 4,
+    --     col_txt = 'txt',
+    --     col_cap = 'txt',
+    --     bg = 'wnd_bg',
+    --     pad = 4,
+    --     noarrow = false,
+    --     align = 0
+    -- })
 
-    GUI.New("mnuScales", "Menubox", {
-        z = 11,
-        x = 96,
-        y = 62,
-        w = 100,
-        h = 20,
-        caption = "",
-        optarray = {"---", "Ionian (Major)", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian (Minor)", "Locrian"},
-        retval = 1.0,
-        font_a = 3,
-        font_b = 4,
-        col_txt = "txt",
-        col_cap = "txt",
-        bg = "wnd_bg",
-        pad = 4,
-        noarrow = false,
-        align = 0
-    })
+    -- GUI.New('mnuScale', 'Menubox', {
+    --     z = 11,
+    --     x = 96,
+    --     y = 62,
+    --     w = 100,
+    --     h = 20,
+    --     caption = '',
+    --     optarray = {'---', 'Ionian (Major)', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Aeolian (Minor)', 'Locrian'},
+    --     retval = 1.0,
+    --     font_a = 3,
+    --     font_b = 4,
+    --     col_txt = 'txt',
+    --     col_cap = 'txt',
+    --     bg = 'wnd_bg',
+    --     pad = 4,
+    --     noarrow = false,
+    --     align = 0
+    -- })
 
 
-    GUI.New("lblVelocity", "Label", {
+    GUI.New('lblVelocity', 'Label', {
         z = 11,
         x = 224,
         y = 0,
-        caption = "Velocity",
+        caption = 'Velocity',
         font = 2,
-        color = "txt",
-        bg = "wnd_bg",
+        color = 'txt',
+        bg = 'wnd_bg',
         shadow = false
     })
 
-    GUI.New("btnVel10", "Button", {
+    GUI.New('btnVel10', 'Button', {
         z = 11,
         x = 288,
         y = 0,
         w = 28,
         h = 24,
-        caption = "127",
+        caption = '127',
         font = 3,
-        col_txt = "txt",
-        col_fill = "elm_frame"
+        col_txt = 'txt',
+        col_fill = 'elm_frame'
     })
 
 
-    GUI.New("lblLength", "Label", {
+    GUI.New('lblLength', 'Label', {
         z = 11,
         x = 224,
         y = 30,
-        caption = "Length",
+        caption = 'Length',
         font = 2,
-        color = "txt",
-        bg = "wnd_bg",
+        color = 'txt',
+        bg = 'wnd_bg',
         shadow = false
     })
 
-    GUI.New("lblLength1", "Button", {
+    GUI.New('lblLength1', 'Button', {
         z = 11,
         x = 288,
         y = 30,
         w = 48,
         h = 24,
-        caption = "1/128",
+        caption = '1/128',
         font = 3,
-        col_txt = "txt",
-        col_fill = "elm_frame"
+        col_txt = 'txt',
+        col_fill = 'elm_frame'
     })
 
 end
