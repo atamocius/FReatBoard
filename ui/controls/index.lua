@@ -1,7 +1,17 @@
 local scaleSelector = require('ui/controls/scale_selector')
 local velocitySelector = require('ui/controls/velocity_selector')
+local velocities = require('config/velocities')
 
 local index = {}
+
+local state = {
+    selectedVelocityIndex = 10,
+}
+
+local function handleVelocityClick(index)
+    state.selectedVelocityIndex = index
+    -- reaper.ShowConsoleMsg(velocities[state.selectedVelocityIndex] .. '\n')
+end
 
 function index.render()
     GUI.New('rdoMode', 'Radio', {
@@ -67,12 +77,12 @@ function index.render()
         caption = 'Submit',
         font = 3,
         col_txt = 'txt',
-        col_fill = 'blue'
+        col_fill = 'green'
     })
 
 
     scaleSelector.render(42, 62, 11, false)
-    velocitySelector.render(224, 0, 11)
+    velocitySelector.render(224, 0, 11, state.selectedVelocityIndex, handleVelocityClick)
 
 
     GUI.New('lblLength', 'Label', {
