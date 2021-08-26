@@ -58,6 +58,7 @@ function index.newFretboard(
         end
 
         local g = GUI.elms[name]
+        g.caption = note.name
         g.col_fill = color
         g:init()
     end
@@ -218,9 +219,21 @@ function index.newFretboard(
         return r
     end
 
+    local function setScale(scale)
+        self.scale = scale
+        redrawFretboard()
+    end
+
+    local function setUseFlats(useFlats)
+        self.useFlats = useFlats
+        redrawFretboard()
+    end
+
     return {
         getSelectedNotes = getSelectedNotes,
         setMode = setMode,
+        setScale = setScale,
+        setUseFlats = setUseFlats,
         clear = clear,
         render = render,
     }
