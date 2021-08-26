@@ -9,7 +9,7 @@ function index.newFretboard(
     z,
     mode,
     scale,
-    useFlats,
+    accidental,
     onClick
 )
     local self = {
@@ -18,7 +18,7 @@ function index.newFretboard(
         z = z,
         mode = mode,
         scale = scale,
-        useFlats = useFlats,
+        accidental = accidental,
         onClick = onClick,
         buffer = {},
     }
@@ -46,7 +46,7 @@ function index.newFretboard(
         local name = 'btnFret' .. fret .. 'String' .. string
 
         local value = config.tuning[string] + fret
-        local note = scaleUtils.getNote(value, self.useFlats, self.scale)
+        local note = scaleUtils.getNote(value, self.accidental, self.scale)
 
         local color = DEFAULT_NOTE_COLOR
         if isNoteSelected(fret, string) then
@@ -103,7 +103,7 @@ function index.newFretboard(
         local name = 'btnFret' .. fret .. 'String' .. string
 
         local value = config.tuning[string] + fret
-        local note = scaleUtils.getNote(value, self.useFlats, self.scale)
+        local note = scaleUtils.getNote(value, self.accidental, self.scale)
 
         local caption = note.name
         local color = DEFAULT_NOTE_COLOR
@@ -224,8 +224,8 @@ function index.newFretboard(
         redrawFretboard()
     end
 
-    local function setUseFlats(useFlats)
-        self.useFlats = useFlats
+    local function setAccidental(accidental)
+        self.accidental = accidental
         redrawFretboard()
     end
 
@@ -233,7 +233,7 @@ function index.newFretboard(
         getSelectedNotes = getSelectedNotes,
         setMode = setMode,
         setScale = setScale,
-        setUseFlats = setUseFlats,
+        setAccidental = setAccidental,
         clear = clear,
         render = render,
     }

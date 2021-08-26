@@ -14,7 +14,6 @@ local state = {
     selectedModeIndex = 1,
 
     selectedAccidentalIndex = 1,
-    useFlats = false,
 
     selectedVelocityIndex = 10,
 
@@ -25,7 +24,6 @@ local state = {
 local function handleVelocityClick(index, value)
     state.selectedVelocityIndex = index
     reaper.ShowConsoleMsg(value .. '\n')
-    -- scaleSel.setUseFlats(true)
 end
 
 local function handleModeChange(index, value)
@@ -35,13 +33,7 @@ end
 
 local function handleAccidentalsChange(index, value)
     state.selectedAccidentalIndex = index
-    if index == 1 then
-        state.useFlats = false
-    else
-        state.useFlats = true
-    end
-
-    scaleSel.setUseFlats(state.useFlats)
+    scaleSel.setAccidental(state.selectedAccidentalIndex)
 
     -- reaper.ShowConsoleMsg(index .. ', ' .. value .. '\n')
 end
@@ -81,7 +73,7 @@ function index.render()
             42, 62, 11,
             state.selectedTonicIndex,
             state.selectedScaleIndex,
-            state.useFlats,
+            state.selectedAccidentalIndex,
             handleScaleChange)
     scaleSel.render()
 

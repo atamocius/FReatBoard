@@ -95,17 +95,14 @@ function scale_utils.isNoteTheRoot(scale, noteIndex)
     return scale[1] == noteIndex
 end
 
-function scale_utils.getNote(value, useFlats, scale)
-    useFlats = useFlats or false
+function scale_utils.getNote(value, accidental, scale)
+    accidental = accidental or 1
     scale = scale or {}
 
     -- use x % 12 to get note name
     local noteIndex = value % 12
     -- use x // 12 - 1 to get octave
     local octave = value // 12 - 1
-
-    local accidental = 1
-    if useFlats then accidental = 2 end
 
     local noteName = scale_utils.NOTES[accidental][noteIndex + 1]
 

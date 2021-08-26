@@ -10,7 +10,7 @@ function scale_selector.newScaleSelector(
     z,
     selectedTonicIndex,
     selectedScaleIndex,
-    useFlats,
+    accidental,
     onChange
 )
     local scaleNames = utils.clone(scales.keys)
@@ -20,11 +20,11 @@ function scale_selector.newScaleSelector(
         x = x,
         y = y,
         z = z,
-        useFlats = useFlats,
         scaleNames = scaleNames,
         noteNames = nil,
         selectedTonicIndex = selectedTonicIndex,
         selectedScaleIndex = selectedScaleIndex,
+        accidental = accidental,
         onChange = onChange,
     }
 
@@ -32,14 +32,11 @@ function scale_selector.newScaleSelector(
     local NAME_SCALE = 'mnuScale'
 
     local function updateNoteNames()
-        local accidental = 1
-        if self.useFlats then accidental = 2 end
-
-        self.noteNames = scaleUtils.NOTES[accidental]
+        self.noteNames = scaleUtils.NOTES[self.accidental]
     end
 
-    local function setUseFlats(useFlats)
-        self.useFlats = useFlats
+    local function setAccidental(accidental)
+        self.accidental = accidental
 
         updateNoteNames()
 
@@ -138,7 +135,7 @@ function scale_selector.newScaleSelector(
         getSelectedTonicValue = getSelectedTonicValue,
         getSelectedScaleIndex = getSelectedScaleIndex,
         getSelectedScaleValue = getSelectedScaleValue,
-        setUseFlats = setUseFlats,
+        setAccidental = setAccidental,
         render = render,
     }
 end
