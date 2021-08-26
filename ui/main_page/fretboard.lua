@@ -61,6 +61,7 @@ function fretboard.newFretboard(
         g.caption = note.name
         g.col_fill = color
         g:init()
+        g:redraw()
     end
 
     local function redrawFretboard()
@@ -202,13 +203,14 @@ function fretboard.newFretboard(
         drawFretboard()
     end
 
-    local function setMode(mode)
-        self.mode = mode
-    end
-
     local function clear()
         self.buffer = {}
         redrawFretboard()
+    end
+
+    local function setMode(mode)
+        clear()
+        self.mode = mode
     end
 
     local function getSelectedNotes()

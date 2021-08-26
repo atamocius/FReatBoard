@@ -32,12 +32,15 @@ function index.newMainPage()
 
     local function handleModeChange(index, value)
         self.selectedModeIndex = index
+        fb.setMode(self.selectedModeIndex)
+
         reaper.ShowConsoleMsg(index .. ', ' .. value .. '\n')
     end
 
     local function handleAccidentalsChange(index, value)
         self.selectedAccidentalIndex = index
         scaleSel.setAccidental(self.selectedAccidentalIndex)
+        fb.setAccidental(self.selectedAccidentalIndex)
 
         -- reaper.ShowConsoleMsg(index .. ', ' .. value .. '\n')
     end
@@ -48,11 +51,17 @@ function index.newMainPage()
         selectedTonicValue,
         selectedScaleValue
     )
-        -- self.selectedAccidentalIndex = index
-        reaper.ShowConsoleMsg(selectedTonicIndex .. '\n')
-        reaper.ShowConsoleMsg(selectedScaleIndex .. '\n')
-        reaper.ShowConsoleMsg(selectedTonicValue .. '\n')
-        reaper.ShowConsoleMsg(selectedScaleValue .. '\n')
+        -- reaper.ShowConsoleMsg(selectedTonicIndex .. '\n')
+        -- reaper.ShowConsoleMsg(selectedScaleIndex .. '\n')
+        -- reaper.ShowConsoleMsg(selectedTonicValue .. '\n')
+        -- reaper.ShowConsoleMsg(selectedScaleValue .. '\n')
+
+        if selectedScaleIndex == 1 then
+            fb.setScale(nil)
+        else -- Ignore if scale name is '---'
+            local scale = scales[selectedScaleValue][selectedTonicIndex]
+            fb.setScale(scale)
+        end
     end
 
     local function handleFretboardClick(fret, string, note)
@@ -64,6 +73,13 @@ function index.newMainPage()
             reaper.ShowConsoleMsg('fret ' .. n.fret .. ' of the ' .. n.string .. ' string' .. '\n')
         end
         -- reaper.ShowConsoleMsg('fret ' .. fret .. ' of the ' .. string .. ' string' .. '\n')
+    end
+
+    local function handleClearClick()
+        fb.clear()
+    end
+
+    local function handleSubmitClick()
     end
 
     local function render()
@@ -109,8 +125,7 @@ function index.newMainPage()
             font = 3,
             col_txt = 'txt',
             col_fill = 'red',
-            func = function()
-            end
+            func = handleClearClick
         })
 
         GUI.New('btnSubmit', 'Button', {
@@ -123,15 +138,14 @@ function index.newMainPage()
             font = 3,
             col_txt = 'txt',
             col_fill = 'green',
-            func = function()
-            end
+            func = handleSubmitClick
         })
 
         fb = fretboard.newFretboard(
             16, 104, 11,
             1,
-            scales['Phrygian'][5],
-            false,
+            nil,
+            1,
             handleFretboardClick
         )
         fb.render()
