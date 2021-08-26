@@ -21,7 +21,7 @@ GUI.req('Classes/Class - Slider.lua')()
 -- If any of the requested libraries weren't found, abort the script.
 if missing_lib then return 0 end
 
-local page = require('ui/page')
+local mainPage = require('ui/main_page/index')
 
 local interface = {}
 
@@ -30,7 +30,9 @@ function interface.run()
     GUI.x, GUI.y, GUI.w, GUI.h = 0, 0, 826, 360
     GUI.anchor, GUI.corner = 'mouse', 'C'
 
-    page.render()
+    mainPage
+        .newMainPage()
+        .render()
 
     -- Open the script window and initialize a few things
     GUI.Init()

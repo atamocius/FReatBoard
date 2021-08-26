@@ -1,9 +1,9 @@
 local config = require('config/fretboard')
 local scaleUtils = require('config/scale_utils')
 
-local index = {}
+local fretboard = {}
 
-function index.newFretboard(
+function fretboard.newFretboard(
     x,
     y,
     z,
@@ -239,4 +239,4 @@ function index.newFretboard(
     }
 end
 
-return index
+return fretboard
