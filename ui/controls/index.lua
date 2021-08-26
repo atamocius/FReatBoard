@@ -101,7 +101,9 @@ function index.render()
         caption = 'Clear',
         font = 3,
         col_txt = 'txt',
-        col_fill = 'red'
+        col_fill = 'red',
+        func = function()
+        end
     })
 
     GUI.New('btnSubmit', 'Button', {
@@ -113,7 +115,9 @@ function index.render()
         caption = 'Submit',
         font = 3,
         col_txt = 'txt',
-        col_fill = 'green'
+        col_fill = 'green',
+        func = function()
+        end
     })
 end
 
