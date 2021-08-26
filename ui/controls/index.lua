@@ -1,5 +1,6 @@
 local scaleSelector = require('ui/controls/scale_selector')
 local velocitySelector = require('ui/controls/velocity_selector')
+local modeSelector = require('ui/controls/mode_selector')
 local accidentalsSelector = require('ui/controls/accidentals_selector')
 
 local velocities = require('config/velocities')
@@ -10,6 +11,8 @@ local velSel = nil
 local scaleSel = nil
 
 local state = {
+    selectedModeIndex = 1,
+
     selectedAccidentalIndex = 1,
     useFlats = false,
 
@@ -23,6 +26,11 @@ local function handleVelocityClick(index, value)
     state.selectedVelocityIndex = index
     reaper.ShowConsoleMsg(value .. '\n')
     -- scaleSel.setUseFlats(true)
+end
+
+local function handleModeChange(index, value)
+    state.selectedModeIndex = index
+    reaper.ShowConsoleMsg(index .. ', ' .. value .. '\n')
 end
 
 local function handleAccidentalsChange(index, value)
@@ -52,25 +60,13 @@ local function handleScaleChange(
 end
 
 function index.render()
-    GUI.New('rdoMode', 'Radio', {
-        z = 11,
-        x = 0,
-        y = 0,
-        w = 85,
-        h = 56,
-        caption = '',
-        optarray = {'Chords', 'Single'},
-        dir = 'v',
-        font_a = 2,
-        font_b = 3,
-        col_txt = 'txt',
-        col_fill = 'elm_fill',
-        bg = 'wnd_bg',
-        frame = false,
-        shadow = true,
-        swap = nil,
-        opt_size = 20
-    })
+    modeSelector
+        .newModeSelector(
+            0, 0, 11,
+            state.selectedAccidentalIndex,
+            handleModeChange
+        )
+        .render()
 
     accidentalsSelector
         .newAccidentalsSelector(
@@ -79,33 +75,6 @@ function index.render()
             handleAccidentalsChange
         )
         .render()
-
-
-    GUI.New('btnClear', 'Button', {
-        z = 11,
-        x = 224,
-        y = 60,
-        w = 48,
-        h = 24,
-        caption = 'Clear',
-        font = 3,
-        col_txt = 'txt',
-        col_fill = 'red'
-    })
-
-
-    GUI.New('btnSubmit', 'Button', {
-        z = 11,
-        x = 288,
-        y = 60,
-        w = 256,
-        h = 24,
-        caption = 'Submit',
-        font = 3,
-        col_txt = 'txt',
-        col_fill = 'green'
-    })
-
 
     scaleSel = scaleSelector
         .newScaleSelector(
@@ -122,32 +91,30 @@ function index.render()
         handleVelocityClick
     )
     velSel.render()
-    -- reaper.ShowConsoleMsg(velSel.getSelectedValue() .. '\n')
 
+    GUI.New('btnClear', 'Button', {
+        z = 11,
+        x = 224,
+        y = 60,
+        w = 48,
+        h = 24,
+        caption = 'Clear',
+        font = 3,
+        col_txt = 'txt',
+        col_fill = 'red'
+    })
 
-    -- GUI.New('lblLength', 'Label', {
-    --     z = 11,
-    --     x = 224,
-    --     y = 30,
-    --     caption = 'Length',
-    --     font = 2,
-    --     color = 'txt',
-    --     bg = 'wnd_bg',
-    --     shadow = false
-    -- })
-
-    -- GUI.New('lblLength1', 'Button', {
-    --     z = 11,
-    --     x = 288,
-    --     y = 30,
-    --     w = 48,
-    --     h = 24,
-    --     caption = '1/128',
-    --     font = 3,
-    --     col_txt = 'txt',
-    --     col_fill = 'elm_frame'
-    -- })
-
+    GUI.New('btnSubmit', 'Button', {
+        z = 11,
+        x = 288,
+        y = 60,
+        w = 256,
+        h = 24,
+        caption = 'Submit',
+        font = 3,
+        col_txt = 'txt',
+        col_fill = 'green'
+    })
 end
 
 return index
