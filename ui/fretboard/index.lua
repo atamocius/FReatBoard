@@ -7,6 +7,7 @@ function index.newFretboard(
     x,
     y,
     z,
+    mode,
     scale,
     useFlats,
     onClick
@@ -15,9 +16,11 @@ function index.newFretboard(
         x = x,
         y = y,
         z = z,
+        mode = mode,
         scale = scale,
         useFlats = useFlats,
         onClick = onClick,
+        buffer = {},
     }
 
     local NOTE_W = 24
@@ -28,6 +31,70 @@ function index.newFretboard(
     local DEFAULT_NOTE_COLOR = 'elm_frame'
     local SCALE_NOTE_COLOR = 'blue'
     local ROOT_NOTE_COLOR = 'green'
+    local SELECTED_NOTE_COLOR = 'purple'
+
+    local MODE_CHORD = 1
+    local MODE_SINGLE = 2
+
+    local function isNoteSelected(fret, string)
+        return
+            self.buffer[string] ~= nil and
+            self.buffer[string].fret == fret
+    end
+
+    local function redrawNote(fret, string)
+        local name = 'btnFret' .. fret .. 'String' .. string
+
+        local value = config.tuning[string] + fret
+        local note = scaleUtils.getNote(value, self.useFlats, self.scale)
+
+        local color = DEFAULT_NOTE_COLOR
+        if isNoteSelected(fret, string) then
+            color = SELECTED_NOTE_COLOR
+        elseif note.isRoot then
+            color = ROOT_NOTE_COLOR
+        elseif note.isInScale then
+            color = SCALE_NOTE_COLOR
+        end
+
+        local g = GUI.elms[name]
+        g.col_fill = color
+        g:init()
+    end
+
+    local function redrawFretboard()
+        for fret = 0, config.frets do
+            for string = 1, #config.tuning do
+                redrawNote(fret, string)
+            end
+        end
+    end
+
+    local function selectNote(fret, string, note)
+        self.buffer[string] = {
+            fret = fret,
+            string = string,
+            note = note,
+        }
+        redrawFretboard()
+    end
+
+    local function deselectNote(fret, string)
+        self.buffer[string] = nil
+        redrawFretboard()
+    end
+
+    local function onNoteClick(fret, string, note)
+        if self.mode == MODE_CHORD then
+            if isNoteSelected(fret, string) then
+                deselectNote(fret, string)
+            else
+                selectNote(fret, string, note)
+            end
+        end
+
+        self.onClick(fret, string, note)
+    end
 
     -- fret: 0 to 24
     -- string: 1 to X
@@ -37,7 +104,6 @@ function index.newFretboard(
         local value = config.tuning[string] + fret
         local note = scaleUtils.getNote(value, self.useFlats, self.scale)
 
-        -- local index = note.index
         local caption = note.name
         local color = DEFAULT_NOTE_COLOR
 
@@ -58,7 +124,7 @@ function index.newFretboard(
             col_txt = 'txt',
             col_fill = color,
             func = function()
-                self.onClick(fret, string, note)
+                onNoteClick(fret, string, note)
             end
         })
     end
@@ -126,32 +192,36 @@ function index.newFretboard(
             drawFretLabel(fret)
 
             for string = 1, #config.tuning do
-                drawNote(fret, string, self.useFlats, self.scale)
+                drawNote(fret, string)
             end
         end
     end
 
     local function render()
-        -- reaper.ShowConsoleMsg(config.getNote(56).name)
-        -- reaper.ShowConsoleMsg(config.getNote(56).octave .. '\n')
-        -- reaper.ShowConsoleMsg(config.getNote(56).value .. '\n')
-
-        -- reaper.ShowConsoleMsg(highlights[2].intervals[1] .. '\n')
-        -- reaper.ShowConsoleMsg(highlights[2].intervals[2] .. '\n')
-        -- reaper.ShowConsoleMsg(highlights[2].intervals[3] .. '\n')
-        -- reaper.ShowConsoleMsg(highlights[2].intervals[4] .. '\n')
-        -- reaper.ShowConsoleMsg(highlights[2].intervals[5] .. '\n')
-        -- reaper.ShowConsoleMsg(highlights[2].intervals[6] .. '\n')
-        -- reaper.ShowConsoleMsg(highlights[2].intervals[7] .. '\n')
-
-        -- local x = scales['Phrygian']
-        -- reaper.ShowConsoleMsg(scales.keys[1])
-        -- reaper.ShowConsoleMsg(#x)
-
         drawFretboard()
     end
 
+    local function setMode(mode)
+        self.mode = mode
+    end
+
+    local function clear()
+        self.buffer = {}
+        redrawFretboard()
+    end
+
+    local function getSelectedNotes()
+        local r = {}
+        for _, v in pairs(self.buffer) do
+            table.insert(r, v)
+        end
+        return r
+    end
+
     return {
+        getSelectedNotes = getSelectedNotes,
+        setMode = setMode,
+        clear = clear,
         render = render,
     }
 end

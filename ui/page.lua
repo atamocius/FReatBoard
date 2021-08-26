@@ -8,7 +8,14 @@ local page = {}
 local fb = nil
 
 local function handleFretboardClick(fret, string, note)
-    reaper.ShowConsoleMsg('fret ' .. fret .. ' of the ' .. string .. ' string' .. '\n')
+    reaper.ClearConsole()
+
+    local selectedNotes = fb.getSelectedNotes()
+    for i = 1, #selectedNotes do
+        local n = selectedNotes[i]
+        reaper.ShowConsoleMsg('fret ' .. n.fret .. ' of the ' .. n.string .. ' string' .. '\n')
+    end
+    -- reaper.ShowConsoleMsg('fret ' .. fret .. ' of the ' .. string .. ' string' .. '\n')
 end
 
 function page.render()
@@ -16,6 +23,7 @@ function page.render()
 
     fb = fretboard.newFretboard(
         16, 104, 11,
+        1,
         scales['Phrygian'][5],
         false,
         handleFretboardClick
