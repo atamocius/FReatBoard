@@ -81,9 +81,9 @@ function index.newMainPage()
         if self.selectedModeIndex == 2 then
             undo.beginBlock()
 
-            reaper.ClearConsole()
-            reaper.ShowConsoleMsg('fret ' .. fret .. ' of the ' .. string .. ' string (' .. note.name .. note.octave .. ' ' .. note.value .. ')\n')
-            reaper.ShowConsoleMsg('velocity: ' .. self.selectedVelocityValue .. '\n')
+            -- reaper.ClearConsole()
+            -- reaper.ShowConsoleMsg('fret ' .. fret .. ' of the ' .. string .. ' string (' .. note.name .. note.octave .. ' ' .. note.value .. ')\n')
+            -- reaper.ShowConsoleMsg('velocity: ' .. self.selectedVelocityValue .. '\n')
             insertNote(string, note.value, self.selectedVelocityValue)
 
             midi.moveCursorToEnd()
@@ -96,14 +96,14 @@ function index.newMainPage()
         if self.selectedModeIndex == 1 then
             undo.beginBlock()
 
-            reaper.ClearConsole()
+            -- reaper.ClearConsole()
             local notes = fb.getSelectedNotes()
             for i = 1, #notes do
                 local n = notes[i]
-                reaper.ShowConsoleMsg('fret ' .. n.fret .. ' of the ' .. n.string .. ' string (' .. n.note.name .. n.note.octave .. ' ' .. n.note.value .. ')\n')
+                -- reaper.ShowConsoleMsg('fret ' .. n.fret .. ' of the ' .. n.string .. ' string (' .. n.note.name .. n.note.octave .. ' ' .. n.note.value .. ')\n')
                 insertNote(n.string, n.note.value, self.selectedVelocityValue)
             end
-            reaper.ShowConsoleMsg('velocity: ' .. self.selectedVelocityValue .. '\n')
+            -- reaper.ShowConsoleMsg('velocity: ' .. self.selectedVelocityValue .. '\n')
 
             if #notes > 0 then
                 midi.moveCursorToEnd()
