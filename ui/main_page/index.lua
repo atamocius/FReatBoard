@@ -7,6 +7,9 @@ local fretboard = require('ui/main_page/fretboard')
 local velocities = require('config/velocities')
 local scales = require('config/scales')
 
+local midi = require('utils/midi')
+local undo = require('utils/undo')
+
 local index = {}
 
 function index.newMainPage()
@@ -16,6 +19,7 @@ function index.newMainPage()
         selectedAccidentalIndex = 1,
 
         selectedVelocityIndex = 10,
+        selectedVelocityValue = velocities[10],
 
         selectedTonicIndex = 1,
         selectedScaleIndex = 1,
@@ -27,14 +31,15 @@ function index.newMainPage()
 
     local function handleVelocityClick(index, value)
         self.selectedVelocityIndex = index
-        reaper.ShowConsoleMsg(value .. '\n')
+        self.selectedVelocityValue = value
+        -- reaper.ShowConsoleMsg(value .. '\n')
     end
 
     local function handleModeChange(index, value)
         self.selectedModeIndex = index
         fb.setMode(self.selectedModeIndex)
 
-        reaper.ShowConsoleMsg(index .. ', ' .. value .. '\n')
+        -- reaper.ShowConsoleMsg(index .. ', ' .. value .. '\n')
     end
 
     local function handleAccidentalsChange(index, value)
@@ -64,22 +69,49 @@ function index.newMainPage()
         end
     end
 
-    local function handleFretboardClick(fret, string, note)
-        reaper.ClearConsole()
-
-        local selectedNotes = fb.getSelectedNotes()
-        for i = 1, #selectedNotes do
-            local n = selectedNotes[i]
-            reaper.ShowConsoleMsg('fret ' .. n.fret .. ' of the ' .. n.string .. ' string' .. '\n')
-        end
-        -- reaper.ShowConsoleMsg('fret ' .. fret .. ' of the ' .. string .. ' string' .. '\n')
-    end
-
     local function handleClearClick()
         fb.clear()
     end
 
+    local function insertNote(string, value, velocity)
+        midi.insertNote(value, string - 1, velocity)
+    end
+
+    local function handleFretboardClick(fret, string, note)
+        if self.selectedModeIndex == 2 then
+            undo.beginBlock()
+
+            reaper.ClearConsole()
+            reaper.ShowConsoleMsg('fret ' .. fret .. ' of the ' .. string .. ' string (' .. note.name .. note.octave .. ' ' .. note.value .. ')\n')
+            reaper.ShowConsoleMsg('velocity: ' .. self.selectedVelocityValue .. '\n')
+            insertNote(string, note.value, self.selectedVelocityValue)
+
+            midi.moveCursorToEnd()
+
+            undo.endBlock('FReatBoard: Single note inserted ( ' .. note.name .. note.octave .. ')')
+        end
+    end
+
     local function handleSubmitClick()
+        if self.selectedModeIndex == 1 then
+            undo.beginBlock()
+
+            reaper.ClearConsole()
+            local notes = fb.getSelectedNotes()
+            for i = 1, #notes do
+                local n = notes[i]
+                reaper.ShowConsoleMsg('fret ' .. n.fret .. ' of the ' .. n.string .. ' string (' .. n.note.name .. n.note.octave .. ' ' .. n.note.value .. ')\n')
+                insertNote(n.string, n.note.value, self.selectedVelocityValue)
+            end
+            reaper.ShowConsoleMsg('velocity: ' .. self.selectedVelocityValue .. '\n')
+
+            if #notes > 0 then
+                midi.moveCursorToEnd()
+                fb.clear()
+            end
+
+            undo.endBlock('FReatBoard: Chord inserted')
+        end
     end
 
     local function render()
