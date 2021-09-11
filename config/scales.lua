@@ -23,7 +23,7 @@ local list = {
     {
         name = 'Lydian',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
-            '1, 2, 3, 4, b5, 6, 7'
+            '1, 2, 3, #4, 5, 6, 7'
         ),
     },
     {
