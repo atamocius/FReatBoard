@@ -1,4 +1,3 @@
-local config = require('config/fretboard')
 local scaleUtils = require('config/scale_utils')
 
 local fretboard = {}
@@ -10,6 +9,7 @@ function fretboard.newFretboard(
     mode,
     scale,
     accidental,
+    tuning,
     onClick
 )
     local self = {
@@ -19,6 +19,7 @@ function fretboard.newFretboard(
         mode = mode,
         scale = scale,
         accidental = accidental,
+        tuning = tuning,
         onClick = onClick,
         buffer = {},
     }
@@ -36,40 +37,16 @@ function fretboard.newFretboard(
     local MODE_CHORD = 1
     local MODE_SINGLE = 2
 
+    local MAX_FRETS = 24
+    local MAX_STRINGS = 9
+
+    -- Forward function references
+    local redrawFretboard
+
     local function isNoteSelected(fret, string)
         return
             self.buffer[string] ~= nil and
             self.buffer[string].fret == fret
-    end
-
-    local function redrawNote(fret, string)
-        local name = 'btnFret' .. fret .. 'String' .. string
-
-        local value = config.tuning[string] + fret
-        local note = scaleUtils.getNote(value, self.accidental, self.scale)
-
-        local color = DEFAULT_NOTE_COLOR
-        if isNoteSelected(fret, string) then
-            color = SELECTED_NOTE_COLOR
-        elseif note.isRoot then
-            color = ROOT_NOTE_COLOR
-        elseif note.isInScale then
-            color = SCALE_NOTE_COLOR
-        end
-
-        local g = GUI.elms[name]
-        g.caption = note.name
-        g.col_fill = color
-        g:init()
-        g:redraw()
-    end
-
-    local function redrawFretboard()
-        for fret = 0, config.frets do
-            for string = 1, #config.tuning do
-                redrawNote(fret, string)
-            end
-        end
     end
 
     local function selectNote(fret, string, note)
@@ -98,14 +75,88 @@ function fretboard.newFretboard(
         self.onClick(fret, string, note)
     end
 
+    local function tryDrawNoteButton(fret, string, note, caption, color)
+        local name = 'btnFret' .. fret .. 'String' .. string
+
+        local g = GUI.elms[name]
+
+        if g == nil then
+            GUI.New(name, 'Button', {
+                z = self.z,
+                x = self.x + fret * (NOTE_W + NOTE_SPACING_X),
+                y = self.y + 24 + (string - 1) * (NOTE_H + NOTE_SPACING_Y),
+                w = NOTE_W,
+                h = NOTE_H,
+                caption = caption,
+                font = 3,
+                col_txt = 'txt',
+                col_fill = color,
+                func = function()
+                    onNoteClick(fret, string, note)
+                end
+            })
+        else
+            g.caption = caption
+            g.col_fill = color
+            g.func = function()
+                onNoteClick(fret, string, note)
+            end
+            g:init()
+            g:redraw()
+        end
+    end
+
+    local function tryDeleteNoteButton(fret, string)
+        local name = 'btnFret' .. fret .. 'String' .. string
+
+        local g = GUI.elms[name]
+
+        if g ~= nil then
+            g:delete()
+        end
+    end
+
+    local function redrawNote(fret, string)
+        if string > #self.tuning.pitches or fret > self.tuning.frets then
+            tryDeleteNoteButton(fret, string)
+            return
+        end
+
+        local value = self.tuning.pitches[string] + fret
+        local note = scaleUtils.getNote(value, self.accidental, self.scale)
+        local caption = note.name
+        local color = DEFAULT_NOTE_COLOR
+
+        if isNoteSelected(fret, string) then
+            color = SELECTED_NOTE_COLOR
+        elseif note.isRoot then
+            color = ROOT_NOTE_COLOR
+        elseif note.isInScale then
+            color = SCALE_NOTE_COLOR
+        end
+
+        tryDrawNoteButton(fret, string, note, caption, color)
+    end
+
+    redrawFretboard = function()
+        for fret = 0, MAX_FRETS do
+            for string = 1, MAX_STRINGS do
+                redrawNote(fret, string)
+            end
+        end
+    end
+
     -- fret: 0 to 24
     -- string: 1 to X
     local function drawNote(fret, string)
+        if string > #self.tuning.pitches then
+            return
+        end
+
         local name = 'btnFret' .. fret .. 'String' .. string
 
-        local value = config.tuning[string] + fret
+        local value = self.tuning.pitches[string] + fret
         local note = scaleUtils.getNote(value, self.accidental, self.scale)
-
         local caption = note.name
         local color = DEFAULT_NOTE_COLOR
 
@@ -115,20 +166,7 @@ function fretboard.newFretboard(
             color = SCALE_NOTE_COLOR
         end
 
-        GUI.New(name, 'Button', {
-            z = self.z,
-            x = self.x + fret * (NOTE_W + NOTE_SPACING_X),
-            y = self.y + 24 + (string - 1) * (NOTE_H + NOTE_SPACING_Y),
-            w = NOTE_W,
-            h = NOTE_H,
-            caption = caption,
-            font = 3,
-            col_txt = 'txt',
-            col_fill = color,
-            func = function()
-                onNoteClick(fret, string, note)
-            end
-        })
+        tryDrawNoteButton(fret, string, note, caption, color)
     end
 
     local function drawFretLabel(fret)
@@ -190,10 +228,10 @@ function fretboard.newFretboard(
     end
 
     local function drawFretboard()
-        for fret = 0, config.frets do
+        for fret = 0, self.tuning.frets do
             drawFretLabel(fret)
 
-            for string = 1, #config.tuning do
+            for string = 1, #self.tuning.pitches do
                 drawNote(fret, string)
             end
         end
@@ -231,11 +269,17 @@ function fretboard.newFretboard(
         redrawFretboard()
     end
 
+    local function setTuning(tuning)
+        self.tuning = tuning
+        clear()
+    end
+
     return {
         getSelectedNotes = getSelectedNotes,
         setMode = setMode,
         setScale = setScale,
         setAccidental = setAccidental,
+        setTuning = setTuning,
         clear = clear,
         render = render,
     }
