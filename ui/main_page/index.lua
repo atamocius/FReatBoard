@@ -26,7 +26,7 @@ function index.newMainPage()
         selectedTonicIndex = 1,
         selectedScaleIndex = 1,
 
-        selectedTuningIndex = 1,
+        selectedTuningIndex = tunings.DEFAULT_SELECTED_INDEX,
     }
 
     local velSel = nil
