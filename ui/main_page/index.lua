@@ -2,10 +2,12 @@ local scaleSelector = require('ui/main_page/scale_selector')
 local velocitySelector = require('ui/main_page/velocity_selector')
 local modeSelector = require('ui/main_page/mode_selector')
 local accidentalsSelector = require('ui/main_page/accidentals_selector')
+local tuningSelector = require('ui/main_page/tuning_selector')
 local fretboard = require('ui/main_page/fretboard')
 
 local velocities = require('config/velocities')
 local scales = require('config/scales')
+local tunings = require('config/tunings')
 
 local midi = require('utils/midi')
 local undo = require('utils/undo')
@@ -23,10 +25,13 @@ function index.newMainPage()
 
         selectedTonicIndex = 1,
         selectedScaleIndex = 1,
+
+        selectedTuningIndex = 1,
     }
 
     local velSel = nil
     local scaleSel = nil
+    local tuningSel = nil
     local fb = nil
 
     local function handleVelocityClick(index, value)
@@ -67,6 +72,19 @@ function index.newMainPage()
             local scale = scales[selectedScaleValue][selectedTonicIndex]
             fb.setScale(scale)
         end
+    end
+
+    local function handleTuningChange(
+        selectedTuningIndex,
+        selectedTuningValue
+    )
+        -- reaper.ShowConsoleMsg(selectedTuningIndex .. '\n')
+        -- reaper.ShowConsoleMsg(selectedTuningValue .. '\n')
+
+        -- Set tuning
+        local t = tunings.asDictionary[selectedTuningValue]
+        -- reaper.ShowConsoleMsg(t.frets .. '\n')
+        fb.setTuning(t)
     end
 
     local function handleClearClick()
@@ -137,7 +155,8 @@ function index.newMainPage()
                 self.selectedTonicIndex,
                 self.selectedScaleIndex,
                 self.selectedAccidentalIndex,
-                handleScaleChange)
+                handleScaleChange
+            )
         scaleSel.render()
 
         velSel = velocitySelector.newVelocitySelector(
@@ -146,6 +165,13 @@ function index.newMainPage()
             handleVelocityClick
         )
         velSel.render()
+
+        tuningSel = tuningSelector.newTuningSelector(
+            620, 62, 11,
+            self.selectedTuningIndex,
+            handleTuningChange
+        )
+        tuningSel.render()
 
         GUI.New('btnClear', 'Button', {
             z = 11,
@@ -178,6 +204,7 @@ function index.newMainPage()
             1,
             nil,
             1,
+            tunings.asList[1],
             handleFretboardClick
         )
         fb.render()
