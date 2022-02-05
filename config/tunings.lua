@@ -173,6 +173,66 @@ local list = {
 
     -- Basses
     {
+        name = '[BASS 6, 24] Drop E',
+        pitches = {
+            43, -- G2
+            38, -- D2
+            33, -- A1
+            28, -- E1
+            23, -- B0
+            16, -- E0
+        },
+        frets = 24,
+    },
+    {
+        name = '[BASS 6, 24] Drop F',
+        pitches = {
+            44, -- G#|Ab2
+            39, -- D#|Eb2
+            34, -- A#|Bb1
+            29, -- F1
+            24, -- C1
+            17, -- F0
+        },
+        frets = 24,
+    },
+    {
+        name = '[BASS 6, 24] Drop F#/Gb',
+        pitches = {
+            45, -- A2
+            40, -- E2
+            35, -- B1
+            30, -- F#|Gb1
+            25, -- C#|Db1
+            18, -- F#|Gb0
+        },
+        frets = 24,
+    },
+    {
+        name = '[BASS 6, 24] Drop G',
+        pitches = {
+            46, -- A#|Bb2
+            41, -- F2
+            36, -- C2
+            31, -- G1
+            26, -- D1
+            19, -- G0
+        },
+        frets = 24,
+    },
+    {
+        name = '[BASS 6, 24] Drop G#/Ab',
+        pitches = {
+            47, -- B2
+            42, -- F#|Gb2
+            37, -- C#|Db2
+            32, -- G#|Ab1
+            27, -- D#|Eb1
+            20, -- G#|Ab0
+        },
+        frets = 24,
+    },
+    {
         name = '[BASS 6, 24] Drop A',
         pitches = {
             48, -- C3
