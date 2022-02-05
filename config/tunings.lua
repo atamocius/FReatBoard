@@ -8,10 +8,23 @@ local SEPARATOR = {
     frets = 0,
 }
 
-local DEFAULT_SELECTED_INDEX = 5
+local DEFAULT_SELECTED_INDEX = 6
 
 local list = {
     -- Guitar - 7 strings
+    {
+        name = '[GTR 7, 24] Drop E',
+        pitches = {
+            59, -- B3
+            54, -- F#|Gb3
+            50, -- D3
+            45, -- A2
+            40, -- E2
+            35, -- B1
+            28, -- E1
+        },
+        frets = 24,
+    },
     {
         name = '[GTR 7, 24] Drop F',
         pitches = {
