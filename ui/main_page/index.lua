@@ -83,7 +83,7 @@ function index.newMainPage()
 
         -- Set tuning
         local t = tunings.asDictionary[selectedTuningValue]
-        -- reaper.ShowConsoleMsg(t.name .. '\n')
+        -- reaper.ShowConsoleMsg(t.frets .. '\n')
         fb.setTuning(t)
     end
 

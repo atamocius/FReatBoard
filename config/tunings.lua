@@ -2,9 +2,17 @@ local utils = require('utils/utils')
 
 -- C-1 = 0
 
+local SEPARATOR = {
+    name = '---',
+    pitches = { 0 },
+    frets = 0,
+}
+
 local list = {
+    SEPARATOR,
+    -- Guitar - 7 strings
     {
-        name = '[GTR 7] Drop A',
+        name = '[GTR 7, 24] Drop A',
         pitches = {
             64, -- E4
             59, -- B3
@@ -17,7 +25,102 @@ local list = {
         frets = 24,
     },
     {
-        name = '[BASS 6] Drop A',
+        name = '[GTR 7, 24] Drop A#/Bb',
+        pitches = {
+            65, -- F4
+            60, -- C4
+            56, -- G#|Ab3
+            51, -- D#|Eb3
+            46, -- A#|Bb2
+            41, -- F2
+            34, -- A#|Bb1
+        },
+        frets = 24,
+    },
+    {
+        name = '[GTR 7, 24] Drop B',
+        pitches = {
+            66, -- F#|Gb4
+            61, -- C#|Db4
+            57, -- A3
+            52, -- E3
+            47, -- B2
+            42, -- F#|Gb2
+            35, -- B1
+        },
+        frets = 24,
+    },
+    {
+        name = '[GTR 7, 24] Drop C',
+        pitches = {
+            67, -- G4
+            62, -- D4
+            58, -- A#|Bb3
+            53, -- F3
+            48, -- C3
+            43, -- G2
+            36, -- C2
+        },
+        frets = 24,
+    },
+
+    SEPARATOR,
+
+    -- Guitar - 6 strings
+    {
+        name = '[GTR 6, 22] Drop A',
+        pitches = {
+            59, -- B3
+            54, -- F#|Gb3
+            50, -- D3
+            45, -- A2
+            40, -- E2
+            33, -- A1
+        },
+        frets = 22,
+    },
+    {
+        name = '[GTR 6, 22] Drop A#/Bb',
+        pitches = {
+            60, -- C4
+            55, -- G3
+            51, -- D#|Eb3
+            46, -- A#|Bb2
+            41, -- F2
+            34, -- A#|Bb1
+        },
+        frets = 22,
+    },
+    {
+        name = '[GTR 6, 22] Drop B',
+        pitches = {
+            61, -- C#|Db4
+            56, -- G#|Ab3
+            52, -- E3
+            47, -- B2
+            42, -- F#|Gb2
+            35, -- B1
+        },
+        frets = 22,
+    },
+    {
+        name = '[GTR 6, 22] Drop C',
+        pitches = {
+            62, -- D4
+            57, -- A3
+            53, -- F3
+            48, -- C3
+            43, -- G2
+            36, -- C2
+        },
+        frets = 22,
+    },
+
+    SEPARATOR,
+
+    -- Basses
+    {
+        name = '[BASS 6, 24] Drop A',
         pitches = {
             48, -- C3
             43, -- G2
@@ -49,6 +152,7 @@ local function transformList(list)
 end
 
 local tunings = {
+    SEPARATOR = SEPARATOR,
     asList = list,
     asDictionary = transformList(list),
 }

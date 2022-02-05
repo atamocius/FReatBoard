@@ -149,7 +149,7 @@ function fretboard.newFretboard(
     -- fret: 0 to 24
     -- string: 1 to X
     local function drawNote(fret, string)
-        if string > #self.tuning.pitches then
+        if string > #self.tuning.pitches or fret > self.tuning.frets then
             return
         end
 
@@ -228,7 +228,7 @@ function fretboard.newFretboard(
     end
 
     local function drawFretboard()
-        for fret = 0, self.tuning.frets do
+        for fret = 0, MAX_FRETS do
             drawFretLabel(fret)
 
             for string = 1, #self.tuning.pitches do
