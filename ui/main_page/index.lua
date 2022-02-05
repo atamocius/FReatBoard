@@ -204,7 +204,7 @@ function index.newMainPage()
             1,
             nil,
             1,
-            tunings.asList[1],
+            tunings.asList[self.selectedTuningIndex],
             handleFretboardClick
         )
         fb.render()
