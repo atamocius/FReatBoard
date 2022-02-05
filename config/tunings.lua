@@ -8,8 +8,62 @@ local SEPARATOR = {
     frets = 0,
 }
 
+local DEFAULT_SELECTED_INDEX = 5
+
 local list = {
     -- Guitar - 7 strings
+    {
+        name = '[GTR 7, 24] Drop F',
+        pitches = {
+            60, -- C4
+            55, -- G3
+            51, -- D#|Eb3
+            46, -- A#|Bb2
+            41, -- F2
+            36, -- C2
+            29, -- F1
+        },
+        frets = 24,
+    },
+    {
+        name = '[GTR 7, 24] Drop F#/Gb',
+        pitches = {
+            61, -- C#|Db4
+            56, -- G#|Ab3
+            52, -- E3
+            47, -- B2
+            42, -- F#|Gb2
+            37, -- C#|Db2
+            30, -- F#|Gb1
+        },
+        frets = 24,
+    },
+    {
+        name = '[GTR 7, 24] Drop G',
+        pitches = {
+            62, -- D4
+            57, -- A3
+            53, -- F3
+            48, -- C3
+            43, -- G2
+            38, -- D2
+            31, -- G1
+        },
+        frets = 24,
+    },
+    {
+        name = '[GTR 7, 24] Drop G#/Ab',
+        pitches = {
+            63, -- D#|Eb4
+            58, -- A#|Bb3
+            54, -- F#|Gb3
+            49, -- C#|Db3
+            44, -- G#|Ab2
+            39, -- D#|Eb2
+            32, -- G#|Ab1
+        },
+        frets = 24,
+    },
     {
         name = '[GTR 7, 24] Drop A',
         pitches = {
@@ -187,6 +241,7 @@ local function transformList(list)
 end
 
 local tunings = {
+    DEFAULT_SELECTED_INDEX = DEFAULT_SELECTED_INDEX,
     asList = list,
     asDictionary = transformList(list),
 }
