@@ -55,61 +55,61 @@ local list = {
 
     -- Harmonic Minor Scales
     {
-        name = '[HARMN] Harmonic Minor (Aeolian #7)',
+        name = '[MIN_HAR] Harmonic Minor (Aeolian #7)',
         degrees ='1, 2, b3, 4, 5, b6, 7',
     },
     {
-        name = '[HARMN] Locrian #6',
+        name = '[MIN_HAR] Locrian #6',
         degrees ='1, b2, b3, 4, b5, 6, b7',
     },
     {
-        name = '[HARMN] Ionian #5 (Augmented Major)',
+        name = '[MIN_HAR] Ionian #5 (Augmented Major)',
         degrees ='1, 2, 3, 4, #5, 6, 7',
     },
     {
-        name = '[HARMN] Dorian #4 (Ukrainian Dorian)',
+        name = '[MIN_HAR] Dorian #4 (Ukrainian Dorian)',
         degrees ='1, 2, b3, #4, 5, 6, b7',
     },
     {
-        name = '[HARMN] Phrygian Dominant (Phrygian #3)',
+        name = '[MIN_HAR] Phrygian Dominant (Phrygian #3)',
         degrees ='1, b2, 3, 4, 5, b6, b7',
     },
     {
-        name = '[HARMN] Lydian #2',
+        name = '[MIN_HAR] Lydian #2',
         degrees ='1, #2, 3, #4, 5, 6, 7',
     },
     {
-        name = '[HARMN] Super Locrian bb7',
+        name = '[MIN_HAR] Super Locrian bb7',
         degrees ='1, b2, b3, b4, b5, b6, bb7',
     },
 
     -- Melodic Minor Scales
     {
-        name = '[MELMN] Melodic Minor',
+        name = '[MIN_MEL] Melodic Minor',
         degrees ='1, 2, b3, 4, 5, 6, 7',
     },
     {
-        name = '[MELMN] Dorian b2 (Phrygian #6)',
+        name = '[MIN_MEL] Dorian b2 (Phrygian #6)',
         degrees ='1, b2, b3, 4, 5, 6, b7',
     },
     {
-        name = '[MELMN] Lydian Augmented (Lydian #5)',
+        name = '[MIN_MEL] Lydian Augmented (Lydian #5)',
         degrees ='1, 2, 3, #4, #5, 6, 7',
     },
     {
-        name = '[MELMN] Lydian Dominant (Lydian b7)',
+        name = '[MIN_MEL] Lydian Dominant (Lydian b7)',
         degrees ='1, 2, 3, #4, 5, 6, b7',
     },
     {
-        name = '[MELMN] Mixolydian b6 (Hindu, Aeolian Dominant)',
+        name = '[MIN_MEL] Mixolydian b6 (Hindu, Aeolian Dominant)',
         degrees ='1, 2, 3, 4, 5, b6, b7',
     },
     {
-        name = '[MELMN] Locrian #2 (Half-Diminished, Aeolian b5)',
+        name = '[MIN_MEL] Locrian #2 (Half-Diminished, Aeolian b5)',
         degrees ='1, 2, b3, 4, b5, b6, b7',
     },
     {
-        name = '[MELMN] Super Locrian',
+        name = '[MIN_MEL] Super Locrian',
         degrees ='1, b2, b3, b4, b5, b6, b7',
     },
 }
