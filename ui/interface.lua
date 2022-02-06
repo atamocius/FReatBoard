@@ -17,6 +17,7 @@ GUI.req('Classes/Class - Menubox.lua')()
 GUI.req('Classes/Class - Button.lua')()
 GUI.req('Classes/Class - Options.lua')()
 GUI.req('Classes/Class - Slider.lua')()
+GUI.req("Classes/Class - Frame.lua")()
 
 -- If any of the requested libraries weren't found, abort the script.
 if missing_lib then return 0 end

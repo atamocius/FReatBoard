@@ -1,6 +1,13 @@
 local scaleUtils = require('config/scale_utils')
+local octaveColors = require('config/octave_colors')
 
 local fretboard = {}
+
+local opacity = 255
+GUI.colors['default_note'] = { 70, 70, 70, opacity }
+GUI.colors['scale_note'] = { 160, 160, 160, opacity }
+GUI.colors['tonic_note'] = { 220, 220, 220, opacity }
+GUI.colors['highlighted_txt'] = { 35, 35, 35, opacity }
 
 function fretboard.newFretboard(
     x,
@@ -29,10 +36,14 @@ function fretboard.newFretboard(
     local NOTE_SPACING_X = 8
     local NOTE_SPACING_Y = 6
 
-    local DEFAULT_NOTE_COLOR = 'elm_frame'
-    local SCALE_NOTE_COLOR = 'blue'
-    local ROOT_NOTE_COLOR = 'green'
+    local DEFAULT_NOTE_COLOR = 'default_note'
+    local SCALE_NOTE_COLOR = 'scale_note'
+    local TONIC_NOTE_COLOR = 'tonic_note'
     local SELECTED_NOTE_COLOR = 'purple'
+
+    local DEFAULT_TEXT_COLOR = 'txt'
+    local HIGHLIGHTED_TEXT_COLOR = 'highlighted_txt'
+    local SELECTED_TEXT_COLOR = 'white'
 
     local MODE_CHORD = 1
     local MODE_SINGLE = 2
@@ -75,12 +86,33 @@ function fretboard.newFretboard(
         self.onClick(fret, string, note)
     end
 
-    local function tryDrawNoteButton(fret, string, note, caption, color)
+    local function tryDrawNoteButton(fret, string, note, caption, color, txtColor)
         local name = 'btnFret' .. fret .. 'String' .. string
+        local bgName = 'frmFret' .. fret .. 'String' .. string
 
-        local g = GUI.elms[name]
+        local btn = GUI.elms[name]
+        local frm = GUI.elms[bgName]
 
-        if g == nil then
+        if btn == nil then
+            GUI.New(bgName, 'Frame', {
+                z = self.z + 1,
+                x = self.x + fret * (NOTE_W + NOTE_SPACING_X) - 3,
+                y = self.y + 24 + (string - 1) * (NOTE_H + NOTE_SPACING_Y) - 2,
+                w = NOTE_W + 7,
+                h = NOTE_H + 5,
+                shadow = false,
+                fill = true,
+                color = octaveColors[note.octave],
+                bg = 'wnd_bg',
+                round = 0,
+                text = '',
+                txt_indent = 0,
+                txt_pad = 0,
+                pad = 4,
+                font = 4,
+                col_txt = 'txt'
+            })
+
             GUI.New(name, 'Button', {
                 z = self.z,
                 x = self.x + fret * (NOTE_W + NOTE_SPACING_X),
@@ -89,30 +121,41 @@ function fretboard.newFretboard(
                 h = NOTE_H,
                 caption = caption,
                 font = 3,
-                col_txt = 'txt',
+                col_txt = txtColor,
                 col_fill = color,
                 func = function()
                     onNoteClick(fret, string, note)
                 end
             })
         else
-            g.caption = caption
-            g.col_fill = color
-            g.func = function()
+            btn.caption = caption
+            btn.col_fill = color
+            btn.col_txt = txtColor
+            btn.func = function()
                 onNoteClick(fret, string, note)
             end
-            g:init()
-            g:redraw()
+            btn:init()
+            btn:redraw()
+
+            frm.color = octaveColors[note.octave]
+            frm:init()
+            frm:redraw()
         end
     end
 
     local function tryDeleteNoteButton(fret, string)
         local name = 'btnFret' .. fret .. 'String' .. string
+        local bgName = 'frmFret' .. fret .. 'String' .. string
 
-        local g = GUI.elms[name]
+        local btn = GUI.elms[name]
+        local frm = GUI.elms[bgName]
 
-        if g ~= nil then
-            g:delete()
+        if btn ~= nil then
+            btn:delete()
+        end
+
+        if frm ~= nil then
+            frm:delete()
         end
     end
 
@@ -126,16 +169,20 @@ function fretboard.newFretboard(
         local note = scaleUtils.getNote(value, self.accidental, self.scale)
         local caption = note.name
         local color = DEFAULT_NOTE_COLOR
+        local txtColor = DEFAULT_TEXT_COLOR
 
         if isNoteSelected(fret, string) then
             color = SELECTED_NOTE_COLOR
+            txtColor = SELECTED_TEXT_COLOR
         elseif note.isRoot then
-            color = ROOT_NOTE_COLOR
+            color = TONIC_NOTE_COLOR
+            txtColor = HIGHLIGHTED_TEXT_COLOR
         elseif note.isInScale then
             color = SCALE_NOTE_COLOR
+            txtColor = HIGHLIGHTED_TEXT_COLOR
         end
 
-        tryDrawNoteButton(fret, string, note, caption, color)
+        tryDrawNoteButton(fret, string, note, caption, color, txtColor)
     end
 
     redrawFretboard = function()
@@ -153,20 +200,21 @@ function fretboard.newFretboard(
             return
         end
 
-        local name = 'btnFret' .. fret .. 'String' .. string
-
         local value = self.tuning.pitches[string] + fret
         local note = scaleUtils.getNote(value, self.accidental, self.scale)
         local caption = note.name
         local color = DEFAULT_NOTE_COLOR
+        local txtColor = DEFAULT_TEXT_COLOR
 
         if note.isRoot then
-            color = ROOT_NOTE_COLOR
+            color = TONIC_NOTE_COLOR
+            txtColor = HIGHLIGHTED_TEXT_COLOR
         elseif note.isInScale then
             color = SCALE_NOTE_COLOR
+            txtColor = HIGHLIGHTED_TEXT_COLOR
         end
 
-        tryDrawNoteButton(fret, string, note, caption, color)
+        tryDrawNoteButton(fret, string, note, caption, color, txtColor)
     end
 
     local function drawFretLabel(fret)
