@@ -116,6 +116,20 @@ function scale_utils.getNote(value, accidental, scale)
     }
 end
 
+local function scalesListToNoteIndices(list)
+    local s = utils.map(
+        list,
+        function(item)
+            return {
+                name = item.name,
+                rootRelativeIndices =
+                    scale_utils.createAllRootRelativeNoteIndices(item.degrees),
+            }
+        end
+    )
+    return s
+end
+
 local function scalesListToDictionary(list)
     local t = {}
     for i = 1, #list do
@@ -125,7 +139,8 @@ local function scalesListToDictionary(list)
 end
 
 function scale_utils.transformScalesList(list)
-    local s = scalesListToDictionary(list)
+    local x = scalesListToNoteIndices(list)
+    local s = scalesListToDictionary(x)
     s.keys = utils.map(list, function(item) return item.name end)
     return s
 end
