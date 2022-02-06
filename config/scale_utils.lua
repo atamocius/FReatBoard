@@ -34,26 +34,46 @@ local scale_utils = {
     },
 }
 
+local function parseInterval(accidentals)
+    local offset = 0
+    local degreeIndex = 0
+
+    for i = 1, #accidentals do
+        local a = accidentals:sub(i, i)
+
+        if a == 'b' then
+            offset = offset - 1
+        elseif a == '#' then
+            offset = offset + 1
+        else
+            degreeIndex = i
+            break
+        end
+    end
+
+    local n = accidentals:sub(
+        degreeIndex,
+        degreeIndex + 1 + #accidentals - degreeIndex
+    )
+    local index = tonumber(n)
+
+    return {
+        index = index,
+        offset = offset,
+    }
+end
+
 local function toNoteIndices(intervals)
     local results = {}
 
     local ints = utils.split(intervals, ',')
 
     for i = 1, #ints do
-        local n = ints[i]:sub(1, 1)
-        local offset = 0
-
-        if n == 'b' then
-            n = ints[i]:sub(2, 2)
-            offset = -1
-        elseif n == '#' then
-            n = ints[i]:sub(2, 2)
-            offset = 1
-        end
-
-        local index = tonumber(n)
-
-        table.insert(results, scale_utils.MAJOR_INTERVALS[index] + offset)
+        local parsed = parseInterval(ints[i])
+        table.insert(
+            results,
+            scale_utils.MAJOR_INTERVALS[parsed.index] + parsed.offset
+        )
     end
     return results
 end
