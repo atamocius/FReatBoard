@@ -175,7 +175,7 @@ function index.newMainPage()
 
         GUI.New('btnClear', 'Button', {
             z = 11,
-            x = 224,
+            x = 289,
             y = 60,
             w = 48,
             h = 24,
@@ -188,9 +188,9 @@ function index.newMainPage()
 
         GUI.New('btnSubmit', 'Button', {
             z = 11,
-            x = 288,
+            x = 353,
             y = 60,
-            w = 256,
+            w = 210,
             h = 24,
             caption = 'Submit',
             font = 3,

@@ -83,7 +83,7 @@ function scale_selector.newScaleSelector(
             z = self.z,
             x = self.x + 54,
             y = self.y,
-            w = 100,
+            w = 180,
             h = 20,
             caption = '',
             optarray = self.scaleNames,

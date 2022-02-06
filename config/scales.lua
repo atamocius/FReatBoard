@@ -3,43 +3,43 @@ local utils = require('utils/utils')
 
 local list = {
     {
-        name = 'Ionian (Major)',
+        name = '[MAJOR] Ionian (Major)',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
             '1, 2, 3, 4, 5, 6, 7'
         ),
     },
     {
-        name = 'Dorian',
+        name = '[MAJOR] Dorian',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
             '1, 2, b3, 4, 5, 6, b7'
         ),
     },
     {
-        name = 'Phrygian',
+        name = '[MAJOR] Phrygian',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
             '1, b2, b3, 4, 5, b6, b7'
         ),
     },
     {
-        name = 'Lydian',
+        name = '[MAJOR] Lydian',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
             '1, 2, 3, #4, 5, 6, 7'
         ),
     },
     {
-        name = 'Mixolydian',
+        name = '[MAJOR] Mixolydian',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
             '1, 2, 3, 4, 5, 6, b7'
         ),
     },
     {
-        name = 'Aeolian (Minor)',
+        name = '[MAJOR] Aeolian (Minor)',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
             '1, 2, b3, 4, 5, b6, b7'
         ),
     },
     {
-        name = 'Locrian',
+        name = '[MAJOR] Locrian',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
             '1, b2, b3, 4, b5, b6, b7'
         ),
