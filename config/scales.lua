@@ -2,6 +2,7 @@ local scaleUtils = require('config/scale_utils')
 local utils = require('utils/utils')
 
 local list = {
+    -- Majos Scales
     {
         name = '[MAJOR] Ionian (Major)',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
@@ -45,6 +46,7 @@ local list = {
         ),
     },
 
+    -- Pentatonic Scales
     {
         name = '[PENTA] Major Pentatonic (Ionian)',
         rootRelativeIndices = scaleUtils.createAllRootRelativeNoteIndices(
