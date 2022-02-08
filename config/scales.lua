@@ -109,8 +109,22 @@ local list = {
         degrees ='1, 2, b3, 4, b5, b6, b7',
     },
     {
-        name = '[MIN_MEL] Super Locrian',
+        name = '[MIN_MEL] Super Locrian (Altered)',
         degrees ='1, b2, b3, b4, b5, b6, b7',
+    },
+
+    -- Symmetric Scales
+    {
+        name = '[SYM] Diminished (Whole-Half)',
+        degrees ='1, 2, b3, 4, b5, #5, 6, 7',
+    },
+    {
+        name = '[SYM] Dominant Diminished (Half-Whole)',
+        degrees ='1, b2, #2, 3, #4, 5, 6, b7',
+    },
+    {
+        name = '[SYM] Whole Tone',
+        degrees ='1, 2, 3, #4, #5, b7',
     },
 }
 
