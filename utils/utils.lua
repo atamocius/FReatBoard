@@ -34,4 +34,8 @@ function utils.clone(tbl)
     return {table.unpack(tbl)}
 end
 
+function utils.clamp(val, lower, upper)
+    return math.max(lower, math.min(upper, val))
+end
+
 return utils

@@ -4,9 +4,9 @@ local octaveColors = require('config/octave_colors')
 local fretboard = {}
 
 local opacity = 255
-GUI.colors['default_note'] = { 70, 70, 70, opacity }
-GUI.colors['scale_note'] = { 160, 160, 160, opacity }
-GUI.colors['tonic_note'] = { 220, 220, 220, opacity }
+GUI.colors['tonic_note'] = { 240, 240, 240, opacity }
+GUI.colors['selected_note'] = { 0, 0, 0, opacity }
+GUI.colors['selected_note_bg'] = { 200, 200, 200, opacity }
 GUI.colors['highlighted_txt'] = { 35, 35, 35, opacity }
 
 function fretboard.newFretboard(
@@ -36,12 +36,11 @@ function fretboard.newFretboard(
     local NOTE_SPACING_X = 8
     local NOTE_SPACING_Y = 6
 
-    local DEFAULT_NOTE_COLOR = 'default_note'
-    local SCALE_NOTE_COLOR = 'scale_note'
     local TONIC_NOTE_COLOR = 'tonic_note'
-    local SELECTED_NOTE_COLOR = 'purple'
+    local SELECTED_NOTE_COLOR = 'selected_note'
+    local SELECTED_NOTE_BG_COLOR = 'selected_note_bg'
 
-    local DEFAULT_TEXT_COLOR = 'txt'
+    local DEFAULT_TEXT_COLOR = 'black'
     local HIGHLIGHTED_TEXT_COLOR = 'highlighted_txt'
     local SELECTED_TEXT_COLOR = 'white'
 
@@ -86,7 +85,15 @@ function fretboard.newFretboard(
         self.onClick(fret, string, note)
     end
 
-    local function tryDrawNoteButton(fret, string, note, caption, color, txtColor)
+    local function tryDrawNoteButton(
+        fret,
+        string,
+        note,
+        caption,
+        color,
+        txtColor,
+        bgColor
+    )
         local name = 'btnFret' .. fret .. 'String' .. string
         local bgName = 'frmFret' .. fret .. 'String' .. string
 
@@ -102,7 +109,7 @@ function fretboard.newFretboard(
                 h = NOTE_H + 5,
                 shadow = false,
                 fill = true,
-                color = octaveColors[note.octave],
+                color = bgColor,
                 bg = 'wnd_bg',
                 round = 0,
                 text = '',
@@ -137,7 +144,7 @@ function fretboard.newFretboard(
             btn:init()
             btn:redraw()
 
-            frm.color = octaveColors[note.octave]
+            frm.color = bgColor
             frm:init()
             frm:redraw()
         end
@@ -168,21 +175,30 @@ function fretboard.newFretboard(
         local value = self.tuning.pitches[string] + fret
         local note = scaleUtils.getNote(value, self.accidental, self.scale)
         local caption = note.name
-        local color = DEFAULT_NOTE_COLOR
         local txtColor = DEFAULT_TEXT_COLOR
+        local color = octaveColors.light[note.octave]
+        local bgColor = octaveColors.dark[note.octave]
 
-        if isNoteSelected(fret, string) then
-            color = SELECTED_NOTE_COLOR
-            txtColor = SELECTED_TEXT_COLOR
-        elseif note.isRoot then
-            color = TONIC_NOTE_COLOR
-            txtColor = HIGHLIGHTED_TEXT_COLOR
-        elseif note.isInScale then
-            color = SCALE_NOTE_COLOR
-            txtColor = HIGHLIGHTED_TEXT_COLOR
+        if self.scale ~= nil then
+            color = octaveColors.darkest[note.octave]
+            bgColor = octaveColors.darkest[note.octave]
         end
 
-        tryDrawNoteButton(fret, string, note, caption, color, txtColor)
+        if isNoteSelected(fret, string) then
+            txtColor = SELECTED_TEXT_COLOR
+            color = SELECTED_NOTE_COLOR
+            bgColor = SELECTED_NOTE_BG_COLOR
+        elseif note.isRoot then
+            txtColor = HIGHLIGHTED_TEXT_COLOR
+            color = TONIC_NOTE_COLOR
+            bgColor = octaveColors.dark[note.octave]
+        elseif note.isInScale then
+            txtColor = HIGHLIGHTED_TEXT_COLOR
+            color = octaveColors.lightest[note.octave]
+            bgColor = octaveColors.dark[note.octave]
+        end
+
+        tryDrawNoteButton(fret, string, note, caption, color, txtColor, bgColor)
     end
 
     redrawFretboard = function()
@@ -203,18 +219,26 @@ function fretboard.newFretboard(
         local value = self.tuning.pitches[string] + fret
         local note = scaleUtils.getNote(value, self.accidental, self.scale)
         local caption = note.name
-        local color = DEFAULT_NOTE_COLOR
         local txtColor = DEFAULT_TEXT_COLOR
+        local color = octaveColors.light[note.octave]
+        local bgColor = octaveColors.dark[note.octave]
 
-        if note.isRoot then
-            color = TONIC_NOTE_COLOR
-            txtColor = HIGHLIGHTED_TEXT_COLOR
-        elseif note.isInScale then
-            color = SCALE_NOTE_COLOR
-            txtColor = HIGHLIGHTED_TEXT_COLOR
+        if self.scale ~= nil then
+            color = octaveColors.darkest[note.octave]
+            bgColor = octaveColors.darkest[note.octave]
         end
 
-        tryDrawNoteButton(fret, string, note, caption, color, txtColor)
+        if note.isRoot then
+            txtColor = HIGHLIGHTED_TEXT_COLOR
+            color = TONIC_NOTE_COLOR
+            bgColor = octaveColors.dark[note.octave]
+        elseif note.isInScale then
+            txtColor = HIGHLIGHTED_TEXT_COLOR
+            color = octaveColors.lightest[note.octave]
+            bgColor = octaveColors.dark[note.octave]
+        end
+
+        tryDrawNoteButton(fret, string, note, caption, color, txtColor, bgColor)
     end
 
     local function drawFretLabel(fret)
