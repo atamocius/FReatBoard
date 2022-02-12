@@ -101,7 +101,7 @@ local list = {
         degrees ='1, 2, 3, #4, 5, 6, b7',
     },
     {
-        name = '[MELODIC] Mixolydian b6 (Hindu, Aeolian Dominant)',
+        name = '[MELODIC] Mixolydian b6 (Melodic Major, Hindu, Aeolian Dominant)',
         degrees ='1, 2, 3, 4, 5, b6, b7',
     },
     {
