@@ -83,34 +83,64 @@ local list = {
         degrees ='1, b2, b3, b4, b5, b6, bb7',
     },
 
-    -- Melodic Minor Scales
+    -- Melodic Minor Scales, Ascending
     {
-        name = '[MELODIC] Melodic Minor',
+        name = '[MELO_ASC] Melodic Minor',
         degrees ='1, 2, b3, 4, 5, 6, 7',
     },
     {
-        name = '[MELODIC] Dorian b2 (Phrygian #6)',
+        name = '[MELO_ASC] Dorian b2 (Phrygian #6)',
         degrees ='1, b2, b3, 4, 5, 6, b7',
     },
     {
-        name = '[MELODIC] Lydian Augmented (Lydian #5)',
+        name = '[MELO_ASC] Lydian Augmented (Lydian #5)',
         degrees ='1, 2, 3, #4, #5, 6, 7',
     },
     {
-        name = '[MELODIC] Lydian Dominant (Lydian b7)',
+        name = '[MELO_ASC] Lydian Dominant (Lydian b7)',
         degrees ='1, 2, 3, #4, 5, 6, b7',
     },
     {
-        name = '[MELODIC] Mixolydian b6 (Melodic Major, Hindu, Aeolian Dominant)',
+        name = '[MELO_ASC] Mixolydian b6 (Melodic Major, Hindu, Aeolian Dominant)',
         degrees ='1, 2, 3, 4, 5, b6, b7',
     },
     {
-        name = '[MELODIC] Locrian #2 (Half-Diminished, Aeolian b5)',
+        name = '[MELO_ASC] Locrian #2 (Half-Diminished, Aeolian b5)',
         degrees ='1, 2, b3, 4, b5, b6, b7',
     },
     {
-        name = '[MELODIC] Super Locrian (Altered)',
+        name = '[MELO_ASC] Super Locrian (Altered)',
         degrees ='1, b2, b3, b4, b5, b6, b7',
+    },
+
+    -- Melodic Minor Scales, Descending
+    {
+        name = '[MELO_DESC] Descending Melodic Minor (Natural Minor, Aeolian)',
+        degrees ='1, 2, b3, 4, 5, b6, b7',
+    },
+    {
+        name = '[MELO_DESC] Descending Dorian b2 (Locrian)',
+        degrees ='1, b2, b3, 4, b5, b6, b7',
+    },
+    {
+        name = '[MELO_DESC] Descending Lydian Augmented (Major, Ionian)',
+        degrees ='1, 2, 3, 4, 5, 6, 7',
+    },
+    {
+        name = '[MELO_DESC] Descending Lydian Dominant (Dorian)',
+        degrees ='1, 2, b3, 4, 5, 6, b7',
+    },
+    {
+        name = '[MELO_DESC] Descending Mixolydian b6 (Phrygian)',
+        degrees ='1, b2, b3, 4, 5, b6, b7',
+    },
+    {
+        name = '[MELO_DESC] Descending Locrian #2 (Lydian)',
+        degrees ='1, 2, 3, #4, 5, 6, 7',
+    },
+    {
+        name = '[MELO_DESC] Descending Super Locrian (Mixolydian)',
+        degrees ='1, 2, 3, 4, 5, 6, b7',
     },
 
     -- Symmetric Scales
