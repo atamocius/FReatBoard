@@ -38,4 +38,9 @@ function utils.clamp(val, lower, upper)
     return math.max(lower, math.min(upper, val))
 end
 
+-- https://www.reaper.fm/sdk/reascript/reascripthelp.html#lua_gfx.getchar
+function utils.isWindowFocused()
+    return (gfx.getchar(65536) & 2) > 0
+end
+
 return utils
