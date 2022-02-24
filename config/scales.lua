@@ -1,7 +1,7 @@
 local scaleUtils = require('config/scale_utils')
 
 local list = {
-    -- Majos Scales
+    -- Major Scales
     {
         name = '[MAJOR] Ionian (Major)',
         degrees = '1, 2, 3, 4, 5, 6, 7',
