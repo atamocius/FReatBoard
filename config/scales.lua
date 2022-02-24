@@ -174,6 +174,30 @@ local list = {
         name = '[SYM] Whole Tone',
         degrees ='1, 2, 3, #4, #5, b7',
     },
+
+    -- Hirajoshi Scales
+    -- https://en.wikipedia.org/wiki/Hiraj%C5%8Dshi_scale
+    -- https://stringsofrage.com/scales-modes/shinobi-reverse-hirajoshi-pentatonic-scale-its-modes/
+    {
+        name = '[HIRAJ] Hirajoshi (Aeolian)',
+        degrees ='1, 2, b3, 5, b6',
+    },
+    {
+        name = '[HIRAJ] Mode 2 (Locrian)',
+        degrees ='1, b2, 4, b5, b7',
+    },
+    {
+        name = '[HIRAJ] Mode 3 (Ionian)',
+        degrees ='1, 3, 4, 6, 7',
+    },
+    {
+        name = '[HIRAJ] Mode 4 (Phrygian)',
+        degrees ='1, b2, 4, 5, b6',
+    },
+    {
+        name = '[HIRAJ] Mode 5 (Lydian)',
+        degrees ='1, 3, #4, 5, 7',
+    },
 }
 
 return scaleUtils.transformScalesList(list)
