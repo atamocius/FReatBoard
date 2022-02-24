@@ -183,19 +183,19 @@ local list = {
         degrees ='1, 2, b3, 5, b6',
     },
     {
-        name = '[HIRAJ] Mode 2 (Locrian)',
+        name = '[HIRAJ] Hirajoshi, 2nd Mode (Locrian)',
         degrees ='1, b2, 4, b5, b7',
     },
     {
-        name = '[HIRAJ] Mode 3 (Ionian)',
+        name = '[HIRAJ] Hirajoshi, 3rd Mode (Ionian)',
         degrees ='1, 3, 4, 6, 7',
     },
     {
-        name = '[HIRAJ] Mode 4 (Phrygian)',
+        name = '[HIRAJ] Hirajoshi, 4th Mode (Phrygian)',
         degrees ='1, b2, 4, 5, b6',
     },
     {
-        name = '[HIRAJ] Mode 5 (Lydian)',
+        name = '[HIRAJ] Hirajoshi, 5th Mode (Lydian)',
         degrees ='1, 3, #4, 5, 7',
     },
 }
