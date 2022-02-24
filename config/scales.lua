@@ -53,6 +53,24 @@ local list = {
         degrees ='1, b3, 4, 5, b7',
     },
 
+    -- Blues Scales
+    {
+        name = '[BLUES] Minor Pentatonic + b5 (The Blues Scale)',
+        degrees ='1, b3, 4, b5, 5, b7',
+    },
+    {
+        name = '[BLUES] Minor Pentatonic + 3',
+        degrees ='1, b3, 3, 4, 5, b7',
+    },
+    {
+        name = '[BLUES] Minor Pentatonic + 7',
+        degrees ='1, b3, 4, 5, b7, 7',
+    },
+    {
+        name = '[BLUES] Aeolian + b5 (Nik Nocturnal)',
+        degrees ='1, 2, b3, 4, b5, 5, b6, b7',
+    },
+
     -- Harmonic Minor Scales
     {
         name = '[HARMONIC] Harmonic Minor (Aeolian #7)',
