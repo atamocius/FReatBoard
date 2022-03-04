@@ -198,6 +198,28 @@ local list = {
         name = '[HIRAJ] Hirajoshi, 5th Mode (Lydian)',
         degrees ='1, 3, #4, 5, 7',
     },
+
+    -- Other Scales
+    {
+        name = '[OTHER] Aeolian + b5 (Nik Nocturnal)',
+        degrees ='1, 2, b3, 4, b5, 5, b6, b7',
+    },
+    {
+        name = '[OTHER] 0\'s and 1\'s',
+        degrees = '1, b2',
+    },
+    {
+        name = '[OTHER] Mikko\'s Diminished Scale',
+        degrees = '1, b3, b5, 6',
+    },
+    {
+        name = '[OTHER] Mikko\'s +1 Diminished Scale',
+        degrees = '1, b2, 3, 5, b7',
+    },
+    {
+        name = '[OTHER] Aeolian + Mikko\'s +1 Diminished Scale',
+        degrees = '1, b2, 2, b3, 3, 4, 5, b6, b7',
+    },
 }
 
 return scaleUtils.transformScalesList(list)
