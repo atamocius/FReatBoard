@@ -129,6 +129,32 @@ local list = {
         },
         frets = 24,
     },
+    {
+        name = '[GTR 7, 24] Drop C#/Db',
+        pitches = {
+            68, -- G#4|Ab4
+            63, -- D#4|Eb4
+            59, -- B3
+            54, -- F#3|Gb3
+            49, -- C#3|Db3
+            44, -- G#2|Ab2
+            37, -- C#2|Db2
+        },
+        frets = 24,
+    },
+    {
+        name = '[GTR 7, 24] Drop D',
+        pitches = {
+            69, -- A4
+            64, -- E4
+            60, -- C4
+            55, -- G3
+            50, -- D3
+            45, -- A2
+            38, -- D2
+        },
+        frets = 24,
+    },
 
     SEPARATOR,
 
