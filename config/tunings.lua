@@ -207,6 +207,18 @@ local list = {
         },
         frets = 22,
     },
+    {
+        name = '[GTR 6, 22] Drop D',
+        pitches = {
+            64, -- E4
+            59, -- B3
+            55, -- G3
+            50, -- D3
+            45, -- A2
+            38, -- D2
+        },
+        frets = 22,
+    },
 
     SEPARATOR,
 
