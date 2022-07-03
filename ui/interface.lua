@@ -28,7 +28,7 @@ local interface = {}
 
 function interface.run()
     GUI.name = 'FReatBoard'
-    GUI.x, GUI.y, GUI.w, GUI.h = 0, 0, 826, 360
+    GUI.x, GUI.y, GUI.w, GUI.h = 0, 0, 826, 400
     GUI.anchor, GUI.corner = 'mouse', 'C'
 
     mainPage

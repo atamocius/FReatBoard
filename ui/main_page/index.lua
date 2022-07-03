@@ -27,6 +27,8 @@ function index.newMainPage()
         selectedScaleIndex = 1,
 
         selectedTuningIndex = tunings.DEFAULT_SELECTED_INDEX,
+
+        selectedTuning = nil,
     }
 
     local velSel = nil
@@ -82,9 +84,9 @@ function index.newMainPage()
         -- reaper.ShowConsoleMsg(selectedTuningValue .. '\n')
 
         -- Set tuning
-        local t = tunings.asDictionary[selectedTuningValue]
+        self.selectedTuning = tunings.asDictionary[selectedTuningValue]
         -- reaper.ShowConsoleMsg(t.frets .. '\n')
-        fb.setTuning(t)
+        fb.setTuning(self.selectedTuning)
     end
 
     local function handleClearClick()
@@ -92,7 +94,8 @@ function index.newMainPage()
     end
 
     local function insertNote(string, value, velocity)
-        midi.insertNote(value, string - 1, velocity)
+        local ch = self.selectedTuning.channels[string]
+        midi.insertNote(value, ch - 1, velocity)
     end
 
     local function handleFretboardClick(fret, string, note)
