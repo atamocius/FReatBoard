@@ -344,6 +344,18 @@ local list = {
         channels = { 4, 5, 6, 7, 8 },
     },
     {
+        name = '[BASS 5, 24, CH4-8] Drop C',
+        pitches = {
+            46, -- A#|Bb2
+            41, -- F2
+            36, -- C2
+            31, -- G1
+            24, -- C1
+        },
+        frets = 24,
+        channels = { 4, 5, 6, 7, 8 },
+    },
+    {
         name = '[BASS 5, 24, CH4-8] Drop A',
         pitches = {
             43, -- G2
