@@ -202,13 +202,13 @@ local list = {
     {
         name = '[GTR 7, 24] Drop C#/Db',
         pitches = {
-            68, -- G#4|Ab4
-            63, -- D#4|Eb4
+            68, -- G#|Ab4
+            63, -- D#|Eb4
             59, -- B3
-            54, -- F#3|Gb3
-            49, -- C#3|Db3
-            44, -- G#2|Ab2
-            37, -- C#2|Db2
+            54, -- F#|Gb3
+            49, -- C#|Db3
+            44, -- G#|Ab2
+            37, -- C#|Db2
         },
         frets = 24,
         channels = { 1, 2, 3, 4, 5, 6, 7 },
@@ -232,6 +232,20 @@ local list = {
 
     -- Guitar - 7 strings, 22 frets
 
+    {
+        name = '[GTR 7, 22] Drop F',
+        pitches = {
+            60, -- C4
+            55, -- G3
+            51, -- D#|Eb3
+            46, -- A#|Bb2
+            41, -- F2
+            36, -- C2
+            29, -- F1
+        },
+        frets = 22,
+        channels = { 1, 2, 3, 4, 5, 6, 7 },
+    },
     {
         name = '[GTR 7, 22] Drop A',
         pitches = {
@@ -313,6 +327,35 @@ local list = {
             38, -- D2
         },
         frets = 22,
+        channels = { 1, 2, 3, 4, 5, 6 },
+    },
+
+    SEPARATOR,
+
+    {
+        name = '[GTR 6, 24] C Standard',
+        pitches = {
+            60, -- C4
+            55, -- G3
+            51, -- D#|Eb3
+            46, -- A#|Bb2
+            41, -- F2
+            36, -- C2
+        },
+        frets = 24,
+        channels = { 1, 2, 3, 4, 5, 6 },
+    },
+    {
+        name = '[GTR 6, 24] E Standard',
+        pitches = {
+            64, -- E4
+            59, -- B3
+            55, -- G3
+            50, -- D3
+            45, -- A2
+            40, -- E2
+        },
+        frets = 24,
         channels = { 1, 2, 3, 4, 5, 6 },
     },
 
