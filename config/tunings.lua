@@ -317,6 +317,19 @@ local list = {
         channels = { 1, 2, 3, 4, 5, 6 },
     },
     {
+        name = '[GTR 6, 22] Drop C#/Db',
+        pitches = {
+            63, -- D#|Eb4
+            58, -- A#|Bb3
+            54, -- F#|Gb3
+            49, -- C#|Db3
+            44, -- G#|Ab2
+            37, -- C#|Db2
+        },
+        frets = 22,
+        channels = { 1, 2, 3, 4, 5, 6 },
+    },
+    {
         name = '[GTR 6, 22] Drop D',
         pitches = {
             64, -- E4
@@ -361,6 +374,21 @@ local list = {
 
     SEPARATOR,
 
+    -- Basses (HYDRA) - 4 string
+    {
+        name = '[BASS 4, 24, CH5-8] Drop C#',
+        pitches = {
+            42, -- F#|Gb2
+            37, -- C#|Db2
+            32, -- G#|Ab1
+            25, -- C#|Db1
+        },
+        frets = 24,
+        channels = { 5, 6, 7, 8 },
+    },
+
+    SEPARATOR,
+
     -- Basses (HYDRA) - 5 string
     {
         name = '[BASS 5, 24, CH4-8] Drop E',
@@ -394,6 +422,18 @@ local list = {
             36, -- C2
             31, -- G1
             24, -- C1
+        },
+        frets = 24,
+        channels = { 4, 5, 6, 7, 8 },
+    },
+    {
+        name = '[BASS 5, 24, CH4-8] Drop C#',
+        pitches = {
+            47, -- B2
+            42, -- F#|Gb2
+            37, -- C#|Db2
+            32, -- G#|Ab1
+            25, -- C#|Db1
         },
         frets = 24,
         channels = { 4, 5, 6, 7, 8 },
