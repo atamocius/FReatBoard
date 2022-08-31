@@ -376,6 +376,17 @@ local list = {
 
     -- Basses (HYDRA) - 4 string
     {
+        name = '[BASS 4, 24, CH5-8] Drop B',
+        pitches = {
+            40, -- E2
+            35, -- B1
+            30, -- F#|Gb1
+            23, -- B0
+        },
+        frets = 24,
+        channels = { 5, 6, 7, 8 },
+    },
+    {
         name = '[BASS 4, 24, CH5-8] Drop C#',
         pitches = {
             42, -- F#|Gb2
@@ -413,6 +424,18 @@ local list = {
         },
         frets = 24,
         channels = { 4, 5, 6, 7, 8 },
+    },
+    {
+        name = '[BASS 5, 24, CH4-8] Drop B',
+        pitches = {
+            45, -- A2
+            40, -- E2
+            35, -- B1
+            30, -- F#|Gb1
+            23, -- B0
+        },
+        frets = 24,
+        channels = { 5, 6, 7, 8 },
     },
     {
         name = '[BASS 5, 24, CH4-8] Drop C',
