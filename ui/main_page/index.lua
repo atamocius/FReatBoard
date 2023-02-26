@@ -28,7 +28,7 @@ function index.newMainPage()
 
         selectedTuningIndex = tunings.DEFAULT_SELECTED_INDEX,
 
-        selectedTuning = nil,
+        selectedTuning = tunings.asList[tunings.DEFAULT_SELECTED_INDEX],
     }
 
     local velSel = nil
