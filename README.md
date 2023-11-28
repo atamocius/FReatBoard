@@ -4,6 +4,9 @@ A MIDI tool for REAPER that allows adding notes to the piano roll using a fretbo
 
 ![FReatBoard](/captures/00-main.png)
 
+> ### Prerequisites
+> - You need to install [Lokasenna_GUI v2](https://github.com/jalovatt/Lokasenna_GUI). Please follow the instructions in the [End Users](https://github.com/jalovatt/Lokasenna_GUI#end-users) section.
+
 ## Features
 
 ### Color Coded Octaves
