@@ -16,7 +16,6 @@ local SEPARATOR = {
 local DEFAULT_SELECTED_INDEX = 1
 
 local list = {
-
   -- Guitar - 8 strings
   {
     name = '[GTR 8, 24] Drop E',
@@ -40,6 +39,80 @@ local list = {
       6,
       7,
       8,
+    },
+  },
+
+  SEPARATOR,
+
+  -- SPECIAL TUNINGS
+  -- Primarily "quality of life" setups
+
+  -- Drop B
+  -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
+  {
+    name = '[GTR 6, 22] Drop B (Hydra, middle 6)',
+    pitches = {
+      61, -- C#|Db3
+      56, -- G#|Ab3
+      52, -- E3
+      47, -- B2
+      42, -- F#|Gb2
+      35, -- B1
+    },
+    frets = 22,
+    channels = {
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+    },
+  },
+
+  -- Drop C
+  -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
+  {
+    name = '[GTR 6, 21] Drop C (Hydra, middle 6)',
+    pitches = {
+      62, -- D3
+      57, -- A3
+      53, -- F3
+      48, -- C3
+      43, -- G2
+      36, -- C2
+    },
+    frets = 21,
+    channels = {
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+    },
+  },
+
+  -- Drop D
+  -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
+  {
+    name = '[GTR 6, 22] Drop D (Hydra, 754321)',
+    pitches = {
+      64, -- E4
+      59, -- B3
+      55, -- G3
+      50, -- D3
+      45, -- A2
+      38, -- D2
+    },
+    frets = 21,
+    channels = {
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
     },
   },
 
