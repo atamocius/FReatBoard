@@ -47,6 +47,31 @@ local list = {
   -- SPECIAL TUNINGS
   -- Primarily "quality of life" setups
 
+  -- Drop G#|Ab
+  -- Using Shreddage 3 Hydra (8-strings), but only utilizing the 8-2
+  {
+    name = '[GTR 7, 20] Drop G#/Ab (Hydra, 8765432)',
+    pitches = {
+      63, -- D#|Eb4
+      58, -- A#|Bb3
+      54, -- F#|Gb3
+      49, -- C#|Db3
+      44, -- G#|Ab2
+      39, -- D#|Eb2
+      32, -- G#|Ab1
+    },
+    frets = 20,
+    channels = {
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+    },
+  },
+
   -- Drop B
   -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
   {
