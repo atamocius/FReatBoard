@@ -167,7 +167,29 @@ function fretboard.newFretboard(
   end
 
   local function redrawNote(fret, string)
-    if string > #self.tuning.pitches or fret > self.tuning.frets then
+    if string > #self.tuning.pitches then
+      tryDeleteNoteButton(fret, string)
+      return
+    end
+
+    if type(self.tuning.frets) == 'table' and
+        type(self.tuning.frets[string]) == 'table' and
+        (fret < self.tuning.frets[string][1] or
+          fret > self.tuning.frets[string][2])
+    then
+      tryDeleteNoteButton(fret, string)
+      return
+    end
+
+    if type(self.tuning.frets) == 'table' and
+        type(self.tuning.frets[string]) == 'number' and
+        fret > self.tuning.frets[string]
+    then
+      tryDeleteNoteButton(fret, string)
+      return
+    end
+
+    if type(self.tuning.frets) == 'number' and fret > self.tuning.frets then
       tryDeleteNoteButton(fret, string)
       return
     end
@@ -213,7 +235,26 @@ function fretboard.newFretboard(
   -- fret: 0 to 24
   -- string: 1 to X
   local function drawNote(fret, string)
-    if string > #self.tuning.pitches or fret > self.tuning.frets then
+    if string > #self.tuning.pitches then
+      return
+    end
+
+    if type(self.tuning.frets) == 'table' and
+        type(self.tuning.frets[string]) == 'table' and
+        (fret < self.tuning.frets[string][1] or
+          fret > self.tuning.frets[string][2])
+    then
+      return
+    end
+
+    if type(self.tuning.frets) == 'table' and
+        type(self.tuning.frets[string]) == 'number' and
+        fret > self.tuning.frets[string]
+    then
+      return
+    end
+
+    if type(self.tuning.frets) == 'number' and fret > self.tuning.frets then
       return
     end
 
