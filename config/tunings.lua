@@ -250,6 +250,29 @@ local list = {
     },
   },
 
+  -- Drop C#
+  -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
+  {
+    name = '[GTR 6, 20] Drop C# (Hydra, middle 6)',
+    pitches = {
+      63, -- D#3
+      58, -- A#3
+      54, -- F#3
+      49, -- C#3
+      44, -- G#2
+      37, -- C#2
+    },
+    frets = 21,
+    channels = {
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+    },
+  },
+
   -- Drop D
   -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
   {
