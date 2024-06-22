@@ -262,7 +262,7 @@ local list = {
       44, -- G#2
       37, -- C#2
     },
-    frets = 21,
+    frets = 20,
     channels = {
       2,
       3,
