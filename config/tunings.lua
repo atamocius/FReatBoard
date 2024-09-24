@@ -179,10 +179,60 @@ local list = {
     },
   },
 
+  -- Drop G
+  -- Using Shreddage 3 Hydra (8-strings), but only utilizing the 8-2
+  {
+    name = '[GTR 7, 21] Drop G (Hydra, 8765432)',
+    pitches = {
+      62, -- D4
+      57, -- A3
+      53, -- F3
+      48, -- C3
+      43, -- G2
+      38, -- D2
+      31, -- G1
+    },
+    frets = 21,
+    channels = {
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+    },
+  },
+
+  -- Drop F#
+  -- Using Shreddage 3 Hydra (8-strings), but only utilizing the 8-2
+  {
+    name = '[GTR 7, 22] Drop F# (Hydra, 8765432)',
+    pitches = {
+      61, -- C#|Db4
+      56, -- G#|Ab3
+      52, -- E3
+      47, -- B2
+      42, -- F#|Gb2
+      37, -- C#|Db2
+      30, -- F#|Gb1
+    },
+    frets = 22,
+    channels = {
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+    },
+  },
+
   -- Drop F
   -- Using Shreddage 3 Hydra (8-strings), but only utilizing the 8-2
   {
-    name = '[GTR 7, 22] Drop F (Hydra, 8765432)',
+    name = '[GTR 7, 23] Drop F (Hydra, 8765432)',
     pitches = {
       60, -- C4
       55, -- G3
@@ -192,7 +242,7 @@ local list = {
       36, -- C2
       29, -- F1
     },
-    frets = 22,
+    frets = 23,
     channels = {
       2,
       3,
