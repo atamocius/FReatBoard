@@ -257,7 +257,7 @@ local list = {
   -- Drop A#|Bb
   -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
   {
-    name = '[GTR 6, 22] Drop A#|Bb (Hydra, middle 6)',
+    name = '[GTR 6, 22] Drop A#/Bb (Hydra, middle 6)',
     pitches = {
       60, -- C3
       55, -- G3
