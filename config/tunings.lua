@@ -254,6 +254,29 @@ local list = {
     },
   },
 
+  -- Drop A#|Bb
+  -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
+  {
+    name = '[GTR 6, 22] Drop A#|Bb (Hydra, middle 6)',
+    pitches = {
+      60, -- C3
+      55, -- G3
+      51, -- D#|Eb3
+      46, -- A#|Bb2
+      41, -- F2
+      34, -- A#|Bb1
+    },
+    frets = 22,
+    channels = {
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+    },
+  },
+
   -- Drop B
   -- Using Shreddage 3 Hydra (8-strings), but only utilizing the middle 6
   {
