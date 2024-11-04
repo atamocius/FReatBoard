@@ -259,7 +259,7 @@ local list = {
   {
     name = '[GTR 6, 22] Drop A#/Bb (Hydra, middle 6)',
     pitches = {
-      60, -- C3
+      60, -- C4
       55, -- G3
       51, -- D#|Eb3
       46, -- A#|Bb2
@@ -282,7 +282,7 @@ local list = {
   {
     name = '[GTR 6, 22] Drop B (Hydra, middle 6)',
     pitches = {
-      61, -- C#|Db3
+      61, -- C#|Db4
       56, -- G#|Ab3
       52, -- E3
       47, -- B2
