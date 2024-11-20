@@ -31,7 +31,7 @@ function index.newMainPage()
 
     selectedTuning = tunings.asList[tunings.DEFAULT_SELECTED_INDEX],
 
-    selectedTransposeOffset = 0,
+    selectedTransposeOffset = 12,
   }
 
   local velSel = nil
